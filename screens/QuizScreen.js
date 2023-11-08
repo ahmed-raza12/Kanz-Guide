@@ -1,15 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
-import quizData1 from '../assets/quiz-1.json'
 import QuizResult from './QuizResult';
 import CustomHeader from '../navigation/CustomHeader';
 import { useQuiz } from '../QuizContext'; // Import the useQuiz hook
+import { RewardedAd, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
 
-export default function QuizScreen({route ,navigation}) {
+const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+
+const rewarded = RewardedAd.createForAdRequest(adUnitId, {
+  requestNonPersonalizedAdsOnly: true,
+  keywords: ['fashion', 'clothing'],
+});
+
+const quizData = {
+  1: require('../assets/quiz-1.json'),
+  2: require('../assets/quiz-2.json'),
+  3: require('../assets/quiz-3.json'),
+  4: require('../assets/quiz-4.json')
+  // Add more quiz data files as needed
+};
+
+export default function QuizScreen({ route, navigation }) {
   const { link, title } = route.params
-  const { completeQuiz, state } = useQuiz();
-
-  console.log(link, state, 'quiz link')
+  const { completeQuiz, state, resetQuiz } = useQuiz();
+  const [loaded, setLoaded] = useState(false);
+  // console.log(link, state, 'quiz link')
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
@@ -18,20 +33,41 @@ export default function QuizScreen({route ,navigation}) {
   const [quizCompleted, setQuizCompleted] = useState(false); // New state to track quiz completion
 
   useEffect(() => {
+    const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
+      setLoaded(true);
+    });
+    const unsubscribeEarned = rewarded.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      reward => {
+        console.log('User earned reward of ', reward);
+      },
+    );
+    rewarded.load();    // Unsubscribe from events on unmount
+    return () => {
+      unsubscribeLoaded();
+      unsubscribeEarned();
+    };
+  }, []);
+
+  useEffect(() => {
     if (!quizCompleted) {
       navigation.setOptions({
         header: () => <CustomHeader title={title} />,
       });
     } else {
       navigation.setOptions({
-      header: () => <CustomHeader title={"Result"} />,
-    });
+        header: () => <CustomHeader title={"Result"} />,
+      });
     }
-    const originalQuestions = quizData1;
+    if (state[`quiz${link}`]) {
+      setQuizCompleted(true)
+      setScore(state[`quiz${link}`])
+    }
+    const originalQuestions = quizData[link];
     const shuffledQuestions = shuffleArray(originalQuestions);
     const selectedQuestions = shuffledQuestions.slice(0, totalQuestionsToDisplay);
     setQuestions(selectedQuestions);
-    
+
   }, [quizCompleted]);
 
   const shuffleArray = (array) => {
@@ -45,36 +81,39 @@ export default function QuizScreen({route ,navigation}) {
   const handleOptionSelect = (optionIndex) => {
     setSelectedOption(optionIndex);
   };
+
   const handleNextQuestion = () => {
     if (selectedOption !== null) {
-      if (quizData1[currentQuestion].ansIndex === selectedOption) {
-        setScore(score + 1);
-      }
-
+      const isCorrect = quizData[link][currentQuestion].ansIndex === selectedOption;
+      
+      setScore((prevScore) => isCorrect ? prevScore + 1 : prevScore);
+  
       setSelectedOption(null);
+      
       if (currentQuestion === totalQuestionsToDisplay - 1) {
-        // Check if the current question is the last one
-        const quizCompletionThreshold = 0.2; // Set the completion threshold to 80%
-        const userScore = score / totalQuestionsToDisplay;
-        if (userScore >= quizCompletionThreshold) {
-          completeQuiz('quiz1', userScore);
-        }  
-        setQuizCompleted(true); // Set the quiz as completed
+        const quizCompletionThreshold = 0.2;
+        const userScore = score; // Update the user's score based on the current question
+        if (userScore / totalQuestionsToDisplay >= quizCompletionThreshold) {
+          completeQuiz(`quiz${link}`, userScore);
+        }
+        rewarded.show()
+        setQuizCompleted(true);
         navigation.setOptions({
           header: () => <CustomHeader title={"Result"} />,
-        }); 
-        // navigation.setOptions({title: "Result"})
+        });
       } else {
         setCurrentQuestion(currentQuestion + 1);
       }
     }
   };
+
   const handleQuizRestart = () => {
     // Reset the quiz to its initial state
     setCurrentQuestion(0);
     setSelectedOption(null);
     setScore(0);
     setQuizCompleted(false);
+    completeQuiz(`quiz${link}`, 0)
     navigation.setOptions({
       header: () => <CustomHeader title={title} />,
     });

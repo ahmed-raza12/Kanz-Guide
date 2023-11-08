@@ -1,11 +1,14 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+// ...
 const CustomTabBar = ({ state, descriptors, navigation }) => {
   const iconNames = {
     'حل شدہ': 'book',
     "ترکیب": 'list-alt',
+    "منارة الفكر" : "lighthouse-on",
     "اسباق": 'pencil-square-o',
   };
 
@@ -16,6 +19,9 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
         const label = options.tabBarLabel !== undefined ? options.tabBarLabel : options.title !== undefined ? options.title : route.name;
 
         const iconName = iconNames[label];
+
+        // Check if it's the last tab to use Material Community Icons
+        const isMaterialCommunityIcon = label === "منارة الفكر";
 
         const isFocused = state.index === index;
 
@@ -48,14 +54,20 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
               },
             ]}
           >
-            <FontAwesome name={iconName} size={24} color={isFocused ? '#0a8a06' : 'gray'} />
+            {isMaterialCommunityIcon ? ( // Check if it's the last tab
+              <MaterialCommunityIcons name={iconName} size={24} color={isFocused ? '#0a8a06' : 'gray'} />
+            ) : (
+              <FontAwesome name={iconName} size={24} color={isFocused ? '#0a8a06' : 'gray'} />
+            )}
             <Text style={{ color: isFocused ? '#0a8a06' : 'gray', fontSize: 18, textAlign: "right", fontFamily: 'JameelNoori', marginTop: -10  }}>{label}</Text>
           </TouchableOpacity>
         );
       })}
     </View>
   );
-};
+}
+// ...
+
 
 const styles = StyleSheet.create({
   container: {

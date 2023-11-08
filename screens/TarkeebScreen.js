@@ -11,10 +11,14 @@ const CustomItem = ({ title, link, chapterNo, fileName, navigation }) => {
     overlayText = 'Test';
   } else if (typeof chapterNo === 'boolean') {
     overlayText = 'مشق';
+  } else if (typeof chapterNo === 'object') {
+    overlayText = ' مکمل';
   }
   const handlePress = () => {
     if (typeof chapterNo === 'string') {
       navigation.navigate("QuizScreen", { title, link, fileName });
+    } else if (typeof chapterNo === 'object') {
+      navigation.navigate("Certificate");
     } else {
       navigation.navigate("PDF", { title, link, fileName });
     }
@@ -36,7 +40,7 @@ function TarkeebScreen({ navigation }) {
     <View style={styles.container}>
       <FlatList
         data={chapters}
-        keyExtractor={(item) => item.chapterNo}
+        keyExtractor={(item, id) => id}
         renderItem={({ item, id }) => <CustomItem chapterNo={item.chapterNo} fileName={item.fileName} link={item.link} navigation={navigation} title={item.chapterName} />}
       />
     </View>

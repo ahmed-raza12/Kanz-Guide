@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
-import HalShudaScreen from '../screens/TarkeebScreen';
+import { createStackNavigator } from '@react-navigation/stack';
 import TabNavigator from './TabNavigator';
 import PDFViewScreen from '../screens/PDFViewScreen';
 import ClassScreen from '../screens/ClassScreen';
 import QuizScreen from '../screens/QuizScreen';
 import CustomHeader from './CustomHeader';
 import CertificateScreen from '../screens/CertificateScreen';
+import FeedbackScreen from '../screens/FeedbackScreen';
+import BlogScreen from '../screens/BlogScreen';
 
 const Stack = createStackNavigator();
 const customCardStyleInterpolator = ({ current, layouts }) => ({
@@ -23,7 +23,7 @@ const customCardStyleInterpolator = ({ current, layouts }) => ({
   },
 });
 
-export default function MainStackNavigator() {
+function MainStackNavigator() {
   return (
     <Stack.Navigator screenOptions={{ gestureDirection: "horizontal", cardStyleInterpolator: customCardStyleInterpolator }}>
       <Stack.Screen name="TabNavigator" options={{
@@ -38,22 +38,37 @@ export default function MainStackNavigator() {
       }} component={PDFViewScreen} />
       <Stack.Screen options={{
         headerTitleAlign: "center",
-      headerTitleStyle: {
-        fontFamily: "JameelNoori",
-      fontSize: 24
+        headerTitleStyle: {
+          fontFamily: "JameelNoori",
+          fontSize: 24
         }
       }}
-      name="ClassScreen" component={ClassScreen} />
-      <Stack.Screen 
-      name="QuizScreen" options={{
-        header: () => <CustomHeader title={"Quiz Test"} />,
-        headerTitleAlign: "center",
-      }} component={QuizScreen} />
-      <Stack.Screen 
-      name="Certificate" options={{
-        header: () => <CustomHeader title={"Certificate"} />,
-        headerTitleAlign: "center",
-      }} component={CertificateScreen} />
+        name="ClassScreen" component={ClassScreen} />
+      <Stack.Screen
+        name="QuizScreen" options={{
+          header: () => <CustomHeader title={"Quiz Test"} />,
+          headerTitleAlign: "center",
+        }} component={QuizScreen} />
+      <Stack.Screen
+        name="Certificate" options={{
+          header: () => <CustomHeader title={"Certificate"} />,
+          headerTitleAlign: "center",
+        }} component={CertificateScreen} />
+
+      <Stack.Screen
+        name="FeedbackScreen" options={{
+          header: () => <CustomHeader title={"Certificate"} />,
+          headerTitleAlign: "center",
+        }} component={FeedbackScreen} />
+
+      <Stack.Screen
+        name="BlogScreen" options={{
+          title: "Blog Post",
+          headerTitleAlign: "center"
+        }} component={BlogScreen} />
     </Stack.Navigator>
   );
 }
+
+
+export default MainStackNavigator
