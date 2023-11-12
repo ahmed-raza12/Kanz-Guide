@@ -57,7 +57,7 @@ function MainStackNavigator() {
 
       <Stack.Screen
         name="FeedbackScreen" options={{
-          header: () => <CustomHeader title={"Certificate"} />,
+          header: () => <CustomHeader title={"Feedback"} />,
           headerTitleAlign: "center",
         }} component={FeedbackScreen} />
 

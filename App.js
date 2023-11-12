@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import MainStackNavigator from './navigation/MainStackNavigation';
 import { useNavigation } from '@react-navigation/native';
 import messaging from './firebase'; // Import your Firebase messaging configuration
+import SplashScreen from 'react-native-splash-screen'
 
 
 const App = () => {
   // messaging.n
   const { navigate } = useNavigation()
-
+  SplashScreen.hide();
   useEffect(() => {
     messaging().onNotificationOpenedApp(remoteMessage => {
       console.log('Notification caused app to open from background state:', remoteMessage);

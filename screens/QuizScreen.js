@@ -8,8 +8,7 @@ import { RewardedAd, RewardedAdEventType, TestIds } from 'react-native-google-mo
 const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
 const rewarded = RewardedAd.createForAdRequest(adUnitId, {
-  requestNonPersonalizedAdsOnly: true,
-  keywords: ['fashion', 'clothing'],
+  requestNonPersonalizedAdsOnly: true
 });
 
 const quizData = {
@@ -29,7 +28,7 @@ export default function QuizScreen({ route, navigation }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
   const [questions, setQuestions] = useState([]);
-  const totalQuestionsToDisplay = 5;
+  const totalQuestionsToDisplay = 20;
   const [quizCompleted, setQuizCompleted] = useState(false); // New state to track quiz completion
 
   useEffect(() => {
@@ -91,7 +90,7 @@ export default function QuizScreen({ route, navigation }) {
       setSelectedOption(null);
       
       if (currentQuestion === totalQuestionsToDisplay - 1) {
-        const quizCompletionThreshold = 0.2;
+        const quizCompletionThreshold = 0.8;
         const userScore = score; // Update the user's score based on the current question
         if (userScore / totalQuestionsToDisplay >= quizCompletionThreshold) {
           completeQuiz(`quiz${link}`, userScore);

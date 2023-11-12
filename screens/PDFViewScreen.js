@@ -15,7 +15,6 @@ const adUnitId3 = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyy
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId2, {
     requestNonPersonalizedAdsOnly: true,
-    keywords: ['fashion', 'clothing'],
 });
 
 
@@ -24,8 +23,8 @@ const rewarded = RewardedAd.createForAdRequest(adUnitId3, {
     keywords: ['fashion', 'clothing'],
 });
 
-const INTERSTITIAL_SHOW_INTERVAL = 120 * 1000; // 2 hours in milliseconds
-const REWARDED_AD_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+const INTERSTITIAL_SHOW_INTERVAL = 3 * 60 * 60 * 1000; // 2 hours in milliseconds
+const REWARDED_AD_INTERVAL = 8 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 export default function PDFViewScreen({ route, navigation }) {
     const [isConnected, setIsConnected] = useState(true);
@@ -33,10 +32,30 @@ export default function PDFViewScreen({ route, navigation }) {
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
     const [rewardLoaded, setRewardLoaded] = useState(false);
+    const [screenViews, setScreenViews] = useState(0);
     const { state } = useQuiz();
     const { title, link, fileName } = route.params;
 
     useEffect(() => {
+
+        const trackScreenViews = async () => {
+            try {
+                const storedViews = await AsyncStorage.getItem('screenViews');
+                const currentViews = storedViews ? parseInt(storedViews) : 0;
+
+                const updatedViews = currentViews + 1;
+                setScreenViews(updatedViews);
+                await AsyncStorage.setItem('screenViews', updatedViews.toString());
+                if (updatedViews === 10) {
+                    handleScreenViewCount10();
+                }
+            } catch (error) {
+                console.error('Error tracking screen views:', error);
+            }
+        };
+        trackScreenViews();
+
+
         console.log('1sr useEffect')
         navigation.setOptions({ title: title });
         const checkNetworkStatus = async () => {
@@ -112,9 +131,20 @@ export default function PDFViewScreen({ route, navigation }) {
             unsubscribe();
             unsubscribeLoaded();
             unsubscribeEarned();
+            setScreenViews((prevViews) => prevViews + 1);
         }
 
     }, []);
+    const handleScreenViewCount10 = async () => {
+        console.log('Screen view count reached 10!');
+            interstitial.show();
+        // Add your logic or function call here
+        setScreenViews(0);
+        await AsyncStorage.setItem('screenViews', '0');
+        
+
+    };
+
     async function showInterstitialAd() {
         const lastShownTime = await AsyncStorage.getItem('lastInterstitialShownTime');
         const currentTime = new Date().getTime();
@@ -167,6 +197,7 @@ export default function PDFViewScreen({ route, navigation }) {
         }
     };
 
+    console.log(screenViews, 'sreen views')
     return (
         <View style={styles.container}>
             {isConnected ? (

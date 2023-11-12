@@ -8,6 +8,7 @@ import QuizScreen from '../screens/QuizScreen';
 import CertificateScreen from '../screens/CertificateScreen';
 import FeedbackScreen from '../screens/FeedbackScreen';
 import ManaraScreen from '../screens/ManaraScreen';
+import AsbaqScreen from '../screens/AsbaqScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +41,7 @@ export default function TabNavigator() {
           title: "اسباق",
           header: () => <CustomHeader title={"اسباق"} />,
           headerTitleAlign: "center"
-        }} component={HalShudaScreen} />
+        }} component={AsbaqScreen} />
       </Tab.Navigator>
   );
 }

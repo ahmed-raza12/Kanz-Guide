@@ -19,7 +19,7 @@ const FeedbackScreen = () => {
     };
     const handleFollowOnInstagram = () => {
         // Define your Instagram profile URL
-        const instagramProfileUrl = 'https://www.instagram.com/_ayesha.official__/';
+        const instagramProfileUrl = 'https://www.instagram.com/kanzul_madaris/';
 
         // Use the Linking API to open the URL
         Linking.openURL(instagramProfileUrl).catch((err) =>
