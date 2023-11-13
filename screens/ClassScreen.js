@@ -1,36 +1,62 @@
 import React, { useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
-const classes = [
-    { className: 'مختصر سوالات', id: 1 },
-    { className: 'تفصیلی سوالات', id: 2 },
-    { className: ' کثیر الانتخابی سوالات', id: 3 },
-    { className: 'Guess Paper', id: 4 },
+import solvedBooks from '../assets/solved_paper.json';
+
+const bookType = [
+    { typeName: 'مختصر سوالات', id: 1 },
+    { typeName: 'تفصیلی سوالات', id: 2 },
+    { typeName: ' کثیر الانتخابی سوالات', id: 3 },
+    { typeName: 'Guess Paper', id: 4 },
 ];
 
-
-const CustomItem = ({ title, navigation }) => (
-    <Pressable onPress={() => {
-        navigation.navigate("PDF", { title })
-    }} style={styles.customItem}>
-        <Text style={styles.titleText}>{title}</Text>
-    </Pressable>
-);
-
-function ClassScreen({ route, navigation }) {
-    const { title } = route.params
-    useEffect(() => {
-        navigation.setOptions({ title: title });
-    }, [])
+const CustomItem = ({ title, navigation, links, bookId }) => {
+    const getLinkForType = (bookId) => {
+      switch (bookId) {
+        case 1:
+          return links.short;
+        case 2:
+          return links.detail;
+        case 3:
+          return links.mcq;
+        case 4:
+          return links.guess_paper;
+        default:
+          return '';
+      }
+    };
+  
     return (
-        <View style={styles.container}>
-            <FlatList
-                data={classes}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item, id }) => <CustomItem navigation={navigation} title={item.className} />}
-            />
-        </View>
+      <Pressable onPress={() => {
+        const link = getLinkForType(bookId);
+        console.log(link, 'miiiink')
+        navigation.navigate("PDF", { title, link });
+      }} style={styles.customItem}>
+        <Text style={styles.titleText}>{title}</Text>
+      </Pressable>
     );
-}
+  };
+  
+  function ClassScreen({ route, navigation }) {
+    const { title, id, gradeId } = route.params;
+    useEffect(() => {
+      navigation.setOptions({ title: title });
+    }, []);
+  
+    const grade = solvedBooks.find((g) => g.gradeId === gradeId);
+    const filteredBooks = grade ? grade.books.find((book) => book.id === id) : null;  
+    console.log(filteredBooks, 'soled')
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={bookType}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <CustomItem navigation={navigation} title={item.typeName} bookId={item.id} links={filteredBooks.links} />
+          )}
+        />
+      </View>
+    );
+  }
 
 const styles = StyleSheet.create({
     container: {

@@ -1,0 +1,224 @@
+[
+  {
+    "gradeId": 1,
+    "books": [
+      {
+        "id": 1,
+        "links": {
+          "short": "short_link_1",
+          "detail": "detail_link_1",
+          "mcq": "mcq_link_1",
+          "guess_paper": "guess_paper_link_1"
+        }
+      },
+      {
+        "id": 2,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 3,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 4,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 5,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 6,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 7,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      }
+    ]
+  },
+  {
+    "gradeId": 2,
+    "books": [
+      {
+        "id": 1,
+        "links": {
+          "short": "short_link_1",
+          "detail": "detail_link_1",
+          "mcq": "mcq_link_1",
+          "guess_paper": "guess_paper_link_1"
+        }
+      },
+      {
+        "id": 2,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 3,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 4,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 5,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 6,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 7,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      }
+    ]
+  },
+  {
+    "gradeId": 3,
+    "books": [
+      {
+        "id": 1,
+        "links": {
+          "short": "short_link_1",
+          "detail": "detail_link_1",
+          "mcq": "mcq_link_1",
+          "guess_paper": "guess_paper_link_1"
+        }
+      },
+      {
+        "id": 2,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 3,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 4,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 5,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 6,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 7,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 8,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      },
+      {
+        "id": 9,
+        "links": {
+          "short": "short_link_2",
+          "detail": "detail_link_2",
+          "mcq": "mcq_link_2",
+          "guess_paper": "guess_paper_link_2"
+        }
+      }
+    ]
+  }
+]

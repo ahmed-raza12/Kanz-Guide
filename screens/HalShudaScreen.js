@@ -12,8 +12,8 @@ const classes = [
 ];
 
   
-const CustomItem = ({ title, navigation}) => (
-  <Pressable onPress={() => { navigation.navigate("ClassScreen", { title: title })}} style={styles.customItem}>
+const CustomItem = ({ title, id, navigation}) => (
+  <Pressable onPress={() => { navigation.navigate("BookScreen", { title, id })}} style={styles.customItem}>
     <Text style={styles.titleText}>{title}</Text>
   </Pressable>
 );
@@ -24,7 +24,7 @@ function HalShudaScreen({ navigation }) {
       <FlatList
         data={classes}
         keyExtractor={(item) => item.id}
-        renderItem={({ item, id }) => <CustomItem navigation={navigation} title={item.className} />}
+        renderItem={({ item, id }) => <CustomItem navigation={navigation} title={item.className} id={item.id} />}
       />
     </View>
   );

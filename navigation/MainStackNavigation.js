@@ -8,6 +8,7 @@ import CustomHeader from './CustomHeader';
 import CertificateScreen from '../screens/CertificateScreen';
 import FeedbackScreen from '../screens/FeedbackScreen';
 import BlogScreen from '../screens/BlogScreen';
+import BookScreen from '../screens/BookScreen';
 
 const Stack = createStackNavigator();
 const customCardStyleInterpolator = ({ current, layouts }) => ({
@@ -66,6 +67,12 @@ function MainStackNavigator() {
           title: "Blog Post",
           headerTitleAlign: "center"
         }} component={BlogScreen} />
+
+      <Stack.Screen
+        name="BookScreen" options={{
+          title: "مضامین",
+          headerTitleAlign: "center"
+        }} component={BookScreen} />
     </Stack.Navigator>
   );
 }
