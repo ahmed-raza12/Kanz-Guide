@@ -5,64 +5,73 @@
       {
         "id": 1,
         "links": {
-          "short": "short_link_1",
-          "detail": "detail_link_1",
-          "mcq": "mcq_link_1",
-          "guess_paper": "guess_paper_link_1"
+          "short": "https://drive.google.com/uc?id=19royXtepPKYCJjrHkL4iJHC27IS0c35r",
+          "detail": "https://drive.google.com/uc?id=1KC2zUIlAb6-NcHICngZSQ3rn1QRgUK5e",
+          "mcq": "https://drive.google.com/uc?id=1KWspl47XqDdfIXYA2csa0DGhPZ7csPVd",
+          "q_paper": "https://drive.google.com/uc?id=1JL6MMZoesdbaER-uaWYnRtaNrQmqE9Q7"
         }
       },
       {
         "id": 2,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1BKsrMRjcTOLdgGr4s7CT4MyWoep1TIVO",
+          "detail": "https://drive.google.com/uc?id=1LLGNU4D-_FrlLK6JtdUmq0psU8Wk7aQ4",
+          "mcq": "https://drive.google.com/uc?id=1WAdUxYMFu4xEkJI3hOeLOpu1w17qaOUm",
+          "q_paper": "https://drive.google.com/uc?id=1aKdBQI7ekJc7EJx32Cp8QLNqrAYLQRjD"
         }
       },
       {
         "id": 3,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1Quh9O9K-PpdCglc_CfG2zFFhfYkUGhz3",
+          "detail": "https://drive.google.com/uc?id=1LuuPMuODAMBmoo3Tp_Ua8vXN54LGauQ2",
+          "mcq": "https://drive.google.com/uc?id=1UaV9rNd0I_8sI-yP-3LBK83WiGVJLoyV",
+          "q_paper": "https://drive.google.com/uc?id=1low49jfmnIRj-lKA1haw_w5ilRmR3N_g"
         }
       },
       {
         "id": 4,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1dfOUxxyo0_jCjbWg07KOkC9X9MaUnUjn",
+          "detail": "https://drive.google.com/uc?id=1em0O4gyyGUXI_R1ecGHD071WybdldJT_",
+          "mcq": "https://drive.google.com/uc?id=19IhM14NC5X3dwCVvKDeZRQKUv8YaUvjs",
+          "q_paper": "https://drive.google.com/uc?id=1hjp6Ge034TP4ksGXj5PCkT4ybkYCGbD8"
         }
       },
       {
         "id": 5,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=16rC6VD-cD7Qlbj4urwSAXyluXznSX_4A",
+          "detail": "https://drive.google.com/uc?id=1SI6I_3C8GK7qhJK0dPasVeBpDRK-g138",
+          "mcq": "https://drive.google.com/uc?id=1u-gvSeNzxkKGoPagjViAV5UBc4O13mqV",
+          "q_paper": "https://drive.google.com/uc?id=1bC94dhV_WAP504t_WQPfJ1pNMasAwI_y"
         }
       },
       {
         "id": 6,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1GweAO6bN816rCpWg4iXdNIIkr0HDwuav",
+          "detail": "https://drive.google.com/uc?id=1Uf8V1RTLmBJUXVwOelcnCehquEQz48CM",
+          "mcq": "https://drive.google.com/uc?id=1u-gvSeNzxkKGoPagjViAV5UBc4O13mqV",
+          "q_paper": "https://drive.google.com/uc?id=1bC94dhV_WAP504t_WQPfJ1pNMasAwI_y"
         }
       },
       {
         "id": 7,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1OzEwl6PqY2RAqvfAiwoh-SVYNN7XIGsW",
+          "detail": "https://drive.google.com/uc?id=1sNB_hd6sYnl1gikcaPatX0L9O-TXHwB9",
+          "mcq": "https://drive.google.com/uc?id=1MafJ9XU_v7_E4vxE4rPGeWJk9F7I5Flw",
+          "q_paper": "https://drive.google.com/uc?id=1MafJ9XU_v7_E4vxE4rPGeWJk9F7I5Flw"
+        }
+      },
+      {
+        "id": 8,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1X91Q3fsKehKLoY3TbHSL4EQ83Nm5tj6i",
+          "detail": "https://drive.google.com/uc?id=1UYNh_kjYYTZA7dAbr4o1xmv1SHkZKYbR",
+          "mcq": "https://drive.google.com/uc?id=1UaV9rNd0I_8sI-yP-3LBK83WiGVJLoyV",
+          "q_paper": "https://drive.google.com/uc?id=1low49jfmnIRj-lKA1haw_w5ilRmR3N_g"
         }
       }
     ]
@@ -73,64 +82,64 @@
       {
         "id": 1,
         "links": {
-          "short": "short_link_1",
-          "detail": "detail_link_1",
-          "mcq": "mcq_link_1",
-          "guess_paper": "guess_paper_link_1"
+          "short": "https://drive.google.com/uc?id=1AjKua-x4GsQ7XFdSugB4uQWaJmYJlXhe",
+          "detail": "https://drive.google.com/uc?id=1N3AwcJgypAxAo0mk4iyAzEWg1HtIxSt2",
+          "mcq": "https://drive.google.com/uc?id=1lABzrssmA7gSGm7RtV8YQXacaBQ--hNy",
+          "q_paper": "https://drive.google.com/uc?id=1_Wh3nXn4EKPvIeZa3n7t0QdDnO38V5Uu"
         }
       },
       {
         "id": 2,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1PaWRjQj-EOMWFh1BwkrVLaUF4SBLR8IV",
+          "detail": "https://drive.google.com/uc?id=106DTX2k4lYunMa0j-pga0qDOW7FfVddm",
+          "mcq": "https://drive.google.com/uc?id=1UqWCtMzLK7skl9ENrJZLtKCjKWQ0wndz",
+          "q_paper": "https://drive.google.com/uc?id=1lD6hDOevsLR174Gy-SsjnNRK7ClkNekE"
         }
       },
       {
         "id": 3,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1sbyHUpVPaa0gj1Jkltw7arA33A9gfdoE",
+          "detail": "https://drive.google.com/uc?id=1-Rg3zvJvfsmtWUtZuKzDo3Y8uuGSFzAC",
+          "mcq": "https://drive.google.com/uc?id=1UqWCtMzLK7skl9ENrJZLtKCjKWQ0wndz",
+          "q_paper": "https://drive.google.com/uc?id=1lD6hDOevsLR174Gy-SsjnNRK7ClkNekE"
         }
       },
       {
         "id": 4,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1fxpYuueaqZL15oTzrUAgd-Yqv07t-PIW",
+          "detail": "https://drive.google.com/uc?id=1LhHgzf8Y8pcB2k_e2NsFHC2jXexSSo6w",
+          "mcq": "https://drive.google.com/uc?id=1xe9yvPQgzfapoW2VGN7PuGeOJ_s3w55b",
+          "q_paper": "https://drive.google.com/uc?id=1x-lOxYBX6L-4ttQidWDHErg2MDK7d9kw"
         }
       },
       {
         "id": 5,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1JZDf5xOR21HviIBPv2pr9w5NWqGijQo6",
+          "detail": "https://drive.google.com/uc?id=1TZmfzE7km9IeeniZ4DEvMtQsJ94scE8b",
+          "mcq": "https://drive.google.com/uc?id=1YE7TgtMv0DIAAXM20x2Vgc4fHOPUly9G",
+          "q_paper": "https://drive.google.com/uc?id=1XLprP7icGpCQIqrojfIKb92HLUKKh-8y"
         }
       },
       {
         "id": 6,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1F6VYJIU1aGvMitZuWmm0fFesA-XYYH9a",
+          "detail": "https://drive.google.com/uc?id=12SI8iw_QXfYRHSHNlA2yTgNoznPVas49",
+          "mcq": "https://drive.google.com/uc?id=1_7Gwo2ZpwAL5LJ0f5YFDTxztKN_bzmsG",
+          "q_paper": "https://drive.google.com/uc?id=1xr3ao5YXkSFQ_pk4ZcqF6eKuhTg73ANJ"
         }
       },
       {
         "id": 7,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=13pbrF9xQ1F_nAnIOr_q6d7vLln3b6KuI",
+          "detail": "https://drive.google.com/uc?id=1QVtWAJG0pYWSfgnRhAfbM_BR7nnHgS57",
+          "mcq": "https://drive.google.com/uc?id=1_7Gwo2ZpwAL5LJ0f5YFDTxztKN_bzmsG",
+          "q_paper": "https://drive.google.com/uc?id=1xr3ao5YXkSFQ_pk4ZcqF6eKuhTg73ANJ"
         }
       }
     ]
@@ -141,82 +150,422 @@
       {
         "id": 1,
         "links": {
-          "short": "short_link_1",
-          "detail": "detail_link_1",
-          "mcq": "mcq_link_1",
-          "guess_paper": "guess_paper_link_1"
+          "short": "https://drive.google.com/uc?id=1eSrMMhc0rwGiGTqch_2oTwC1aowFLizs",
+          "detail": "https://drive.google.com/uc?id=1zrzFKl7S_EADJshM7Xg26xysgw6TG6fA",
+          "mcq": "https://drive.google.com/uc?id=1Ixhjw6Qmq7f-T3uTlLwzI-CMHIpH5xvW",
+          "q_paper": "https://drive.google.com/uc?id=1OftjCzTsWlLmORldWfs4eE9pe7fP-lrY"
         }
       },
       {
         "id": 2,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1jT7SP1hZmL6FT3-6LBPHOizS1XPvMSF8",
+          "detail": "https://drive.google.com/uc?id=1HZ2x3S3DsKSDQjgtNDI8DPvdV0aIESem",
+          "mcq": "https://drive.google.com/uc?id=1Ixhjw6Qmq7f-T3uTlLwzI-CMHIpH5xvW",
+          "q_paper": "https://drive.google.com/uc?id=1OftjCzTsWlLmORldWfs4eE9pe7fP-lrY"
         }
       },
       {
         "id": 3,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1WFPxwJwwTtt1K0GDOhrMgUiAUWnyfE24",
+          "detail": "https://drive.google.com/uc?id=1FBq70RGrnE-rEJJ3y9j9TEPJ4uioeP_I",
+          "mcq": "https://drive.google.com/uc?id=1WFPxwJwwTtt1K0GDOhrMgUiAUWnyfE24",
+          "q_paper": "https://drive.google.com/uc?id=1FBq70RGrnE-rEJJ3y9j9TEPJ4uioeP_I"
         }
       },
       {
         "id": 4,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1aBuDSO5yt9P_Gztnh5A3kABqkpy7lx0P",
+          "detail": "https://drive.google.com/uc?id=1YY19IJkNHFdX30OUE5jC31Zfs9hUhop0",
+          "mcq": "https://drive.google.com/uc?id=14EGDQM-1V1dm04G-Kmd5FamH5J9EpQMG",
+          "q_paper": "https://drive.google.com/uc?id=1ce3mVgKjp-sZRUObAR0lhD3GZIFwguq2"
         }
       },
       {
         "id": 5,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1SxtvF_as1qGZIYL_a8hXWjzP6_Ai2a9z",
+          "detail": "https://drive.google.com/uc?id=11KjKFLEBupz4QMl13Ihey3kASM2YVVEi",
+          "mcq": "https://drive.google.com/uc?id=1naIGTdagUl4OdpC3T62zb0uoL3KsWmjP",
+          "q_paper": "https://drive.google.com/uc?id=1pIz3IH7XIBKArjuLjAH7xR0pZHQA12qe"
         }
       },
       {
         "id": 6,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1fVrR6RtjR3VnMJJDiyWJLEuBi0yVh-J2",
+          "detail": "https://drive.google.com/uc?id=1Rn1wspy1w2IhU4FwJpIs5uEGqQhHDqX6",
+          "mcq": "https://drive.google.com/uc?id=1Bf0pSgR9LVBj83GE-AMdWaksrCqsxSXw",
+          "q_paper": "https://drive.google.com/uc?id=1gZobTC93AzbuCdPn9AfT5NdMVBOk7YQC"
         }
       },
       {
         "id": 7,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1paeNNfyv9CSh3zPN0h2qpnXEWKWqdHa6",
+          "detail": "https://drive.google.com/uc?id=1Ea4acXwZS3SnQRQWVoHTWYCL5NZdU93O",
+          "mcq": "https://drive.google.com/uc?id=1bXIu3dGz3g2L5iPbLQfQW6vH77G50kpV",
+          "q_paper": "https://drive.google.com/uc?id=1kZXtb3HEYWkLRoIdPOnrlEXMmcbd603t"
         }
       },
       {
         "id": 8,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1Dczhzznry-9OazY-9i1TYlPlXO8o-AYJ",
+          "detail": "https://drive.google.com/uc?id=1OA1VaU-hCK2_LSmVJ1i92HaOE5oUHabG",
+          "mcq": "https://drive.google.com/uc?id=1NX5m6iqSom8qRGO7-e3oi6JtkPUVNf92",
+          "q_paper": "https://drive.google.com/uc?id=1C5vEMsnJMy-UOlsdmILawgvQVkNt__bk"
         }
       },
       {
         "id": 9,
         "links": {
-          "short": "short_link_2",
-          "detail": "detail_link_2",
-          "mcq": "mcq_link_2",
-          "guess_paper": "guess_paper_link_2"
+          "short": "https://drive.google.com/uc?id=1IBnEJmxe3CLkZlUvxPeq4WaXwvjAWJrM",
+          "detail": "https://drive.google.com/uc?id=1CFXQuViW4prdQ9FGWIoApSJW-wXB9e34",
+          "mcq": "https://drive.google.com/uc?id=1NX5m6iqSom8qRGO7-e3oi6JtkPUVNf92",
+          "q_paper": "https://drive.google.com/uc?id=1C5vEMsnJMy-UOlsdmILawgvQVkNt__bk"
+        }
+      }
+    ]
+  },
+  {
+    "gradeId": 4,
+    "books": [
+      {
+        "id": 1,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1TqvoQx8ZLM90-31ZMj8sg64llpejBA8F",
+          "detail": "https://drive.google.com/uc?id=1zevNidB0PJVrlOWVsv_P2s1V9vsH7DYf",
+          "mcq": "https://drive.google.com/uc?id=1Lee-dDWch4TwC7-pTqwA25cJ6xTeI507",
+          "q_paper": "https://drive.google.com/uc?id=19GCqK-3RMa4Tz-DAN7Lwg0w4E8_Vd9gy"
+        }
+      },
+      {
+        "id": 2,
+        "links": {
+          "short": "https://drive.google.com/uc?id=16XuEjlUTGvIZpRBREPQKp_wMNYgwmCLL",
+          "detail": "https://drive.google.com/uc?id=1ADDu7-Buhe_gUrPOTAWqkjTboUtFFdrN",
+          "mcq": "https://drive.google.com/uc?id=11SH1R8v1owCz4BRY5a4XfYz_E97xnlZx",
+          "q_paper": "https://drive.google.com/uc?id=1A6BxRuCIbTEDXee_-cdziMILGTMMOsRY"
+        }
+      },
+      {
+        "id": 3,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1zsAwd2a-NJ5vdq7EA2upctUPCdNVDkan",
+          "detail": "https://drive.google.com/uc?id=1FqPSx1akpFV6NP7Dqcq9ZhE-cMPJfase",
+          "mcq": "https://drive.google.com/uc?id=11SH1R8v1owCz4BRY5a4XfYz_E97xnlZx",
+          "q_paper": "https://drive.google.com/uc?id=1A6BxRuCIbTEDXee_-cdziMILGTMMOsRY"
+        }
+      },
+      {
+        "id": 4,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1AyumpPs3mbd_lfU1ODbO-elxlrgBKoPH",
+          "detail": "https://drive.google.com/uc?id=1g00EYPBTSX_XdEDZXHeQCIGAGUungcUS",
+          "mcq": "https://drive.google.com/uc?id=1mjw0lLVu7blKLARL2O4FZLCBMOLJNdSS",
+          "q_paper": "https://drive.google.com/uc?id=1d1EhmxIwN24wn6JGfa4o0aabMPiyIyGf"
+        }
+      },
+      {
+        "id": 5,
+        "links": {  
+          "short": "https://drive.google.com/uc?id=1G8AmHb86x-YZcqsGcslXgJwxJRh8iuFG",
+          "detail": "https://drive.google.com/uc?id=15POI0qwgQ3OrP9eNvXj1sOVM4MvDNKVS",
+          "mcq": "https://drive.google.com/uc?id=1TJ4m2mJfiMAoAeD3q8M2guyQHbdtNU7L",
+          "q_paper": "https://drive.google.com/uc?id=1phCoPyCoAfV1rHwBvKU8SFlgXQKYpQ0G"
+        }
+      },
+      {
+        "id": 6,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1PUmpv145FzoGpqQnQEqG3ITnpyCwJ0Ha",
+          "detail": "https://drive.google.com/uc?id=1xC9A3-lstU7add6wiJM1u6A5dnes79eS",
+          "mcq": "https://drive.google.com/uc?id=1vpVRd0X7qxf0wnR8r552WFa3OhumG9cE",
+          "q_paper": "https://drive.google.com/uc?id=1EpfWuUGReqbKs7_I-jWcZjBspvBYZE_t"
+        }
+      },
+      {
+        "id": 7,
+        "links": {
+          "short": "https://drive.google.com/uc?id=11W-6RH9O2HCYY0-lSxUgtPIPYLFr2vgT",
+          "detail": "https://drive.google.com/uc?id=1JQaybq_hqjSn-WYkE5LS_6owiE00YH3j",
+          "mcq": "https://drive.google.com/uc?id=1WBn2UwTHpjwM94GmNqBiagvUuKxCMnXL",
+          "q_paper": "https://drive.google.com/uc?id=1OKDulDcAn_b8mi1_X9-jZDTQ-1tetA8U"
+        }
+      },
+      {
+        "id": 8,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1aFoHdq104ftBVcNLwCEir4WJQX5-lm7I",
+          "detail": "https://drive.google.com/uc?id=1fsKMhtl_jD4CFZGTAO9UeX6APqW42Q0x",
+          "mcq": "https://drive.google.com/uc?id=1WBn2UwTHpjwM94GmNqBiagvUuKxCMnXL",
+          "q_paper": "https://drive.google.com/uc?id=1OKDulDcAn_b8mi1_X9-jZDTQ-1tetA8U"
+        }
+      }
+    ]
+  },
+  {
+    "gradeId": 5,
+    "books": [
+      {
+        "id": 1,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1IxF2Ij-8Dix3bmwZQYVhH537Z1e_b_-C",
+          "detail": "https://drive.google.com/uc?id=1FEPxdqsgmDMUDQZR710bZHGwmnlMPt9i",
+          "mcq": "https://drive.google.com/uc?id=1x6dPY2Ab80q2PzXYQHpJVgQQnZk8KuWm",
+          "q_paper": "https://drive.google.com/uc?id=1ty56fWWD4E9pkTQFa2uWZJKq_LFRpy3D"
+        }
+      },
+      {
+        "id": 2,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1p5c9k-eG0va2wYjf7xd4yLU8MYYGUy1k",
+          "detail": "https://drive.google.com/uc?id=1f0tksWhh6preBNhgGT0fWH5dqzdgQSUj",
+          "mcq": "https://drive.google.com/uc?id=1x6dPY2Ab80q2PzXYQHpJVgQQnZk8KuWm",
+          "q_paper": "https://drive.google.com/uc?id=1ty56fWWD4E9pkTQFa2uWZJKq_LFRpy3D"
+        }
+      },
+      {
+        "id": 3,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1WmeNIAV7asc7w8E4GvZ_2qr6tuRaI6sU",
+          "detail": "https://drive.google.com/uc?id=1dbtmF-BJxEj9N-cVZQracZ_Wxn9Ll8nc",
+          "mcq": "https://drive.google.com/uc?id=104MhaP6oz9ga-ywqoBh1ltoXEPGnAiel",
+          "q_paper": "https://drive.google.com/uc?id=1SleA33Z9Z1Ssxwm9mg_jGiks_8pZPIlT"
+        }
+      },
+      {
+        "id": 4,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1PvTzvxiRS5YcBV6eSPCPLab8Uxp_Jl6C",
+          "detail": "https://drive.google.com/uc?id=1MEhBi5a7a-4jUluZoYX9uQfojcuCmysP",
+          "mcq": "https://drive.google.com/uc?id=1cqNsiYxZ4MneBOPVbP-9pNzQY-UB72A1",
+          "q_paper": "https://drive.google.com/uc?id=1SH3vAmqg2nzuczzQFwxDHnSvwn_K1VHH"
+        }
+      },
+      {
+        "id": 5,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1RBL1OyqJyZvpprr0GyhAFCTfNVPge4lX",
+          "detail": "https://drive.google.com/uc?id=1Pw8BF0zIzF912_PoblNkVKB2M9rArkm2",
+          "mcq": "https://drive.google.com/uc?id=1CC1SxIRGdUu54n7N8Y3KxY8_OndbfflF",
+          "q_paper": "https://drive.google.com/uc?id=1gmWBCQAru4TojenquZl9mFuC21uKItaW"
+        }
+      },
+      {
+        "id": 6,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1EY_EVTsI5hiE8iG4H7G6v0fgCdU_wEUD",
+          "detail": "https://drive.google.com/uc?id=1xDtGofmqhYXd9POVcX-bOt_85CbnKYlS",
+          "mcq": "https://drive.google.com/uc?id=1aXpePQVuIoBbMEGCdlgkDL7N8awx3wx-",
+          "q_paper": "https://drive.google.com/uc?id=1EV9mkuCy_FEBH169kDIUsJQQyXV6Oear"
+        }
+      },
+      {
+        "id": 7,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1wMUyRh5O9GnpAx7vLW59Wwbi5HoVRY7c",
+          "detail": "https://drive.google.com/uc?id=1MEviOQVE1-CLoiGTezW1VI4VcrsYpmf9",
+          "mcq": "https://drive.google.com/uc?id=1aXpePQVuIoBbMEGCdlgkDL7N8awx3wx-",
+          "q_paper": "https://drive.google.com/uc?id=1EV9mkuCy_FEBH169kDIUsJQQyXV6Oear"
+        }
+      }
+    ]
+  },
+  {
+    "gradeId": 6,
+    "books": [
+      {
+        "id": 1,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1yPu16Cx6RsDL30dmqiUfYD0OqGGxCbmi",
+          "detail": "https://drive.google.com/uc?id=19AyHrl19-5uZCZJL1J02wg0WEWLO77iY",
+          "mcq": "https://drive.google.com/uc?id=1K7gichkTzoK6TIpENikHrjWg0wieOn0g",
+          "q_paper": "https://drive.google.com/uc?id=1eMdevV7h-WreCBLco7CfNxY0FwqW8jft"
+        }
+      },
+      {
+        "id": 2,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1CDE2pZJktOgllkf-ZphtnIMjENPTBSS9",
+          "detail": "https://drive.google.com/uc?id=1fBe2mUC3rbLuX-JCWlfVH__5m3ttgOSI",
+          "mcq": "https://drive.google.com/uc?id=1uk8QoqtMoZjdfffTEzOAoFjaQyTZWiF-",
+          "q_paper": "https://drive.google.com/uc?id=1mSiQOSpzPr4onWMG3SCR0V6JG7-J7nCs"
+        }
+      },
+      {
+        "id": 3,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1pMqqDkG5dUoiCAX6S5Z6ofQb4HJlIeiH",
+          "detail": "https://drive.google.com/uc?id=1CyPeq5rupgqKmY9wGBkdjgrOVDfzSgqS",
+          "mcq": "https://drive.google.com/uc?id=1jZLFo1TSQ3WcnWUmiLQqvVB9d_ma51Y-",
+          "q_paper": "https://drive.google.com/uc?id=1CAfGGxuP6Q5UjyYM2cO_77MFdlFQYCUj"
+        }
+      },
+      {
+        "id": 4,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1agZvZb1lGee2Dqw6YJPIqietHQ5KGErZ",
+          "detail": "https://drive.google.com/uc?id=1Hulzb3JiT4i8XjmoSQknN2SjNMug1rdS",
+          "mcq": "https://drive.google.com/uc?id=1H6-Pw6XucltcmegxQjS_9zlQtQF9seFj",
+          "q_paper": "https://drive.google.com/uc?id=1idHjG807GFvING1HTOaQxVr3MGSjpRG8"
+        }
+      },
+      {
+        "id": 5,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1BrnErYRnTAc1iC5CLxZWPJiQdp94QCqj",
+          "detail": "https://drive.google.com/uc?id=1EAlkuGRfL3egrM9JPsu3sdN6AwkzMNL8",
+          "mcq": "https://drive.google.com/uc?id=1f_jLFqyZqrTdXD0RTqXHjoj1QZqgY1O6",
+          "q_paper": "https://drive.google.com/uc?id=1N6d1PytjfW57JMHTpu8d482s1un9Y4RR"
+        }
+      },
+      {
+        "id": 6,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1OsyWffQ64_dYvN2H-KVh3JSpdltJYEHp",
+          "detail": "https://drive.google.com/uc?id=12mEbqs0TZ5yiytuzzfSXwv8FbifTp47H",
+          "mcq": "https://drive.google.com/uc?id=12y0ZvGMEJPKx1sfujrejxlj2OePKID9E",
+          "q_paper": "https://drive.google.com/uc?id=17ZA2LDABKUMETTKOPSTd2blTfQKySeej"
+        }
+      },
+      {
+        "id": 7,
+        "links": {
+          "short": "https://drive.google.com/uc?id=14v0shkY-bNozP1jHwNODAwQDbbWMK73G",
+          "detail": "https://drive.google.com/uc?id=15hdvZTrVHwEcdDCtojgKxWmodrrAsQbW",
+          "mcq": "https://drive.google.com/uc?id=12y0ZvGMEJPKx1sfujrejxlj2OePKID9E",
+          "q_paper": "https://drive.google.com/uc?id=17ZA2LDABKUMETTKOPSTd2blTfQKySeej"
+        }
+      }
+    ]
+  },
+  {
+    "gradeId": 7,
+    "books": [
+      {
+        "id": 1,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1_NsQErBal6O5F1haIyHINXNmcey4JWX2",
+          "detail": "https://drive.google.com/uc?id=1O7thQDz8ZBhlM-KzjqGQoWMQJfxNaWUy",
+          "mcq": "https://drive.google.com/uc?id=1oF5O0ZHBV9CE4_zdNrmrOO9hiWnzjP-5",
+          "q_paper": "https://drive.google.com/uc?id=1AQB12z9BO9Ges-Sjpcdstiqk7eBbrpOc"
+        }
+      },
+      {
+        "id": 2,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1Dpd59smTm8fCReZhxgfEgJ3_2TBGdn7_",
+          "detail": "https://drive.google.com/uc?id=1LnzhQohr-_5iyRpoNC6Ep-kmlNfaRuF7",
+          "mcq": "https://drive.google.com/uc?id=1XbdDsZ1MG_N4gvvz5TlP28NQQvAUl5we",
+          "q_paper": "https://drive.google.com/uc?id=13Q0NkBoJpSiYaNfBqLyGvQI7kFfYeKvC"
+        }
+      },
+      {
+        "id": 3,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1mVIXT34VWgosWJ5HGE54shzx4TLdvkw3",
+          "detail": "https://drive.google.com/uc?id=1pOn71jreqw2eoQ_xHILN-C3kV2A65OmR",
+          "mcq": "https://drive.google.com/uc?id=1bcU4MbBcoftqI4bKayRR0lY1cmVL7JDO",
+          "q_paper": "https://drive.google.com/uc?id=1CWZsF0YCw--t0HEdCQ5L-L11Pmimg1jv"
+        }
+      },
+      {
+        "id": 4,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1zUnu4zJCWX7yIYjsnTXdctbJg7wIJGVH",
+          "detail": "https://drive.google.com/uc?id=15zbPthwIp556s_5IaMP6Pk-r0KPZKof5",
+          "mcq": "https://drive.google.com/uc?id=1ufS5ltw66tSGa6gk2J9z62hjT0xY38Oa",
+          "q_paper": "https://drive.google.com/uc?id=1UaP5uVi64Gkuk4RW3EQPoi0Yxg8BZkuh"
+        }
+      },
+      {
+        "id": 5,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1DtKpRLMTPXnlqi3k-aTJ9vPFrJr0NqDX",
+          "detail": "https://drive.google.com/uc?id=1iC7sNQ-kj8SFjcLcYDb3net_GAps_tfy",
+          "mcq": "https://drive.google.com/uc?id=1PdQur5_5n0yLDbvghIixq3HZ6WEkqj1b",
+          "q_paper": "https://drive.google.com/uc?id=1dgXVeQA9b0EKHOSN74aVDB6mJgKZz7Ox"
+        }
+      },
+      {
+        "id": 6,
+        "links": {
+          "short": "https://drive.google.com/uc?id=19Ups7V9nwOw0WEQDYVUQBWt_KqJf-Oiy",
+          "detail": "https://drive.google.com/uc?id=1W-3CRoHpO1tWer19EtJ_-0z2t_I0EZqX",
+          "mcq": "https://drive.google.com/uc?id=1PdQur5_5n0yLDbvghIixq3HZ6WEkqj1b",
+          "q_paper": "https://drive.google.com/uc?id=1dgXVeQA9b0EKHOSN74aVDB6mJgKZz7Ox"
+        }
+      },
+      {
+        "id": 7,
+        "links": {
+          "short": "https://drive.google.com/uc?id=14FHWYMkZvsB3955-vzYKXFtaF0nx5vV2",
+          "detail": "https://drive.google.com/uc?id=19qU_DtpAkGO-L6qPPW471Bx-egn-Mo0t",
+          "mcq": "https://drive.google.com/uc?id=1BgF1ga6wvAh-RnY2XxX3lGgi98JPxPks",
+          "q_paper": "https://drive.google.com/uc?id=1LNhWTBcOxFOq8AQYdY2w4zOBcROWWJmk"
+        }
+      },
+      {
+        "id": 8,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1GrLGkxZUwiSjx0-5mCO1pmK-D9hoSpAb",
+          "detail": "https://drive.google.com/uc?id=1OX034cSn0pPgQu3soCWipXXHlZL-utbQ",
+          "mcq": "https://drive.google.com/uc?id=1ufS5ltw66tSGa6gk2J9z62hjT0xY38Oa",
+          "q_paper": "https://drive.google.com/uc?id=1UaP5uVi64Gkuk4RW3EQPoi0Yxg8BZkuh"
+        }
+      }
+    ]
+  },
+  {
+    "gradeId": 8,
+    "books": [
+      {
+        "id": 1,
+        "links": {
+          "short": "https://drive.google.com/uc?id=12AeWagGZggPuBtyWKXQdrAhqbz29yHD1",
+          "detail": "https://drive.google.com/uc?id=1lRalBy438qcFS7kePiYBy6utJ3FlHB1E",
+          "mcq": "https://drive.google.com/uc?id=1g6eMlF8rGFLyisCdl1T3a1WqTW8V9yP6",
+          "q_paper": "https://drive.google.com/uc?id=1IoZfqBvokprnBCmxKqAiNjSAMkUj5xon"
+        }
+      },
+      {
+        "id": 2,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1PClNhzKmDnnphC_45GMyPOQlHyErwqOy",
+          "detail": "https://drive.google.com/uc?id=1GKP5V_kzhokqsii6AOVIpA2fT6mxcQMH",
+          "mcq": "https://drive.google.com/uc?id=1kAMoJZJcos6ooN1Zg_W0rVFQgMom_q76",
+          "q_paper": "https://drive.google.com/uc?id=12VttXzuizx4ZCehnZoo9MFJXgVxM9fk0"
+        }
+      },
+      {
+        "id": 3,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1Sv73TeOZRwNb_DFf-7Feg6mNEo7HcHJZ",
+          "detail": "https://drive.google.com/uc?id=1flg9p-N2_7fYF4ForyRAP5F_kfEck8ST",
+          "mcq": "https://drive.google.com/uc?id=1g19psAp4mOrvUdN3TcXdW3Uj1OWUMCRP",
+          "q_paper": "https://drive.google.com/uc?id=1u6PI9U6n2kj2iVMGkbOQDsTzKL7jctri"
+        }
+      },
+      {
+        "id": 4,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1Pw_CamNGPMzDDRNahjTkJtMjnCWByFn-",
+          "detail": "https://drive.google.com/uc?id=1oukj2EiuAX_QNMhKBRH-sYvDHBbBMH_2",
+          "mcq": "https://drive.google.com/uc?id=1yBB8p_2wYneDn3TZtsnh59M-278ogYio",
+          "q_paper": "https://drive.google.com/uc?id=1LDAlQrg4Xm2EtmV33-XnQYiTLNAwntjY"
+        }
+      },
+      {
+        "id": 5,
+        "links": {
+          "short": "https://drive.google.com/uc?id=1hGMethHqpJe_HndPadczkNy64w7ANrzs",
+          "detail": "https://drive.google.com/uc?id=1MoeHHSGdvDj4oc_zdAw8oF0v3pYELvkz",
+          "mcq": "https://drive.google.com/uc?id=11MY0D3p-ZXeyiamK7LCXwGdIw5VdymOq",
+          "q_paper": "https://drive.google.com/uc?id=1P1EPk_qOhj6utRSYn-NXv4swhYG97r-G"
         }
       }
     ]

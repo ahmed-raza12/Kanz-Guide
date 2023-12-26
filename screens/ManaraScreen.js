@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import { fetchBlogPostsOnce, listenForNewBlogPosts, downloadJSONFile } from '../assets/api/firebase-api';
-
+import NetInfo from '@react-native-community/netinfo';
+import Feather from 'react-native-vector-icons/Feather';
 
 function ManaraScreen({ route, navigation }) {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true)
+  const [isConnected, setIsConnected] = useState(true);
   const jsonFileUrl = 'https://drive.google.com/uc?id=1GcNjXR0SWjtymA8t1BpwhUaHHgO0ijiY'
   const fetchJSONFile = async () => {
     setLoading(true);
@@ -24,8 +26,17 @@ function ManaraScreen({ route, navigation }) {
   };
 
   useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      setIsConnected(state.isConnected);
+      if(state.isConnected) {
+        fetchJSONFile();
+      } 
+    });
     console.log(blogPosts, 'blogpost')
-    fetchJSONFile();
+  
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
 
@@ -55,6 +66,12 @@ function ManaraScreen({ route, navigation }) {
   return (
     <View style={styles.container}>
       {
+        !isConnected ? (
+          <View style={styles.noWifiContainer}>
+            <Feather name="wifi-off" size={60} color="#0a8a06" />
+            <Text style={styles.noWifiText}>No Internet Connection</Text>
+          </View>
+        ) :
         loading ?
           <View style={styles.loadingContainer}>
             <ActivityIndicator size="large" color="purple" />
@@ -81,6 +98,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center', // Center vertically
     alignItems: 'center',
+  },
+  noWifiContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: "center",
+      marginTop: 20
+  },
+  noWifiText: {
+      fontSize: 20,
+      color: 'green',
+      marginTop: 20,
   },
   postList: {
     paddingTop: 8,

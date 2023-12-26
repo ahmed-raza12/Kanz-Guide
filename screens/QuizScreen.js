@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Alert } from 'react-native';
 import QuizResult from './QuizResult';
 import CustomHeader from '../navigation/CustomHeader';
 import { useQuiz } from '../QuizContext'; // Import the useQuiz hook
 import { RewardedAd, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
+import NetInfo from '@react-native-community/netinfo';
+import Feather from 'react-native-vector-icons/Feather';
 
-const adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+const adUnitId = true ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
 const rewarded = RewardedAd.createForAdRequest(adUnitId, {
   requestNonPersonalizedAdsOnly: true
@@ -27,11 +29,17 @@ export default function QuizScreen({ route, navigation }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
+  const [isConnected, setIsConnected] = useState(true);
+
   const [questions, setQuestions] = useState([]);
   const totalQuestionsToDisplay = 20;
-  const [quizCompleted, setQuizCompleted] = useState(false); // New state to track quiz completion
+  const [quizCompleted, setQuizCompleted] = useState(false);
 
   useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      setIsConnected(state.isConnected);
+    });
+
     const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
       setLoaded(true);
     });
@@ -41,8 +49,9 @@ export default function QuizScreen({ route, navigation }) {
         console.log('User earned reward of ', reward);
       },
     );
-    rewarded.load();    // Unsubscribe from events on unmount
+    rewarded.load();
     return () => {
+      unsubscribe();
       unsubscribeLoaded();
       unsubscribeEarned();
     };
@@ -84,11 +93,11 @@ export default function QuizScreen({ route, navigation }) {
   const handleNextQuestion = () => {
     if (selectedOption !== null) {
       const isCorrect = quizData[link][currentQuestion].ansIndex === selectedOption;
-      
+
       setScore((prevScore) => isCorrect ? prevScore + 1 : prevScore);
-  
+
       setSelectedOption(null);
-      
+
       if (currentQuestion === totalQuestionsToDisplay - 1) {
         const quizCompletionThreshold = 0.8;
         const userScore = score; // Update the user's score based on the current question
@@ -103,6 +112,8 @@ export default function QuizScreen({ route, navigation }) {
       } else {
         setCurrentQuestion(currentQuestion + 1);
       }
+    } else {
+      Alert.alert('Please select an option!')
     }
   };
 
@@ -128,53 +139,60 @@ export default function QuizScreen({ route, navigation }) {
   }
   return (
     <View>
-      {quizCompleted ? ( // Conditionally render the QuizResult component
-        <QuizResult
-          score={score}
-          totalQuestions={totalQuestionsToDisplay}
-          onRestart={handleQuizRestart}
-        />
-      ) : (
-        <ScrollView contentContainerStyle={styles.container}>
-          <View style={styles.questionBox}>
-            <View style={styles.overlayCircle}>
-              <Text style={styles.questionNumberText}>
-                Q {currentQuestion + 1}/{questions.length}
-              </Text>
-            </View>
-            <Text style={styles.questionText}>
-              {questions[currentQuestion].question}
-            </Text>
+      {
+        !isConnected ? (
+          <View style={styles.noWifiContainer}>
+            <Feather name="wifi-off" size={60} color="#0a8a06" />
+            <Text style={styles.noWifiText}>No Internet Connection</Text>
           </View>
-          <View style={styles.optionsContainer}>
-            {questions[currentQuestion].options.map((option, index) => (
-              <Pressable
-                key={index}
-                style={[
-                  styles.optionButton,
-                  selectedOption === index && styles.selectedOption,
-                ]}
-                onPress={() => handleOptionSelect(index)}
-              >
-                <View style={styles.optionCircle}>
-                  <Text style={styles.optionCircleText}>
-                    {index === 0 ? 'ا' : index === 1 ? 'ب' : index === 2 ? 'ج' : 'د'}
+        ) :
+          quizCompleted ? ( // Conditionally render the QuizResult component
+            <QuizResult
+              score={score}
+              totalQuestions={totalQuestionsToDisplay}
+              onRestart={handleQuizRestart}
+            />
+          ) : (
+            <ScrollView contentContainerStyle={styles.container}>
+              <View style={styles.questionBox}>
+                <View style={styles.overlayCircle}>
+                  <Text style={styles.questionNumberText}>
+                    Q {currentQuestion + 1}/{questions.length}
                   </Text>
                 </View>
-                <Text style={styles.optionText}> {option} </Text>
+                <Text style={styles.questionText}>
+                  {questions[currentQuestion].question}
+                </Text>
+              </View>
+              <View style={styles.optionsContainer}>
+                {questions[currentQuestion].options.map((option, index) => (
+                  <Pressable
+                    key={index}
+                    style={[
+                      styles.optionButton,
+                      selectedOption === index && styles.selectedOption,
+                    ]}
+                    onPress={() => handleOptionSelect(index)}
+                  >
+                    <View style={styles.optionCircle}>
+                      <Text style={styles.optionCircleText}>
+                        {index === 0 ? 'ا' : index === 1 ? 'ب' : index === 2 ? 'ج' : 'د'}
+                      </Text>
+                    </View>
+                    <Text style={styles.optionText}> {option} </Text>
+                  </Pressable>
+                ))}
+              </View>
+              <Pressable
+                style={styles.nextButton}
+                onPress={handleNextQuestion}
+              >
+                <Text style={styles.nextButtonText}>
+                  {currentQuestion === totalQuestionsToDisplay - 1 ? 'Finish' : 'Next'}
+                </Text>
               </Pressable>
-            ))}
-          </View>
-          <Pressable
-            style={styles.nextButton}
-            onPress={handleNextQuestion}
-          >
-            <Text style={styles.nextButtonText}>
-              {currentQuestion === totalQuestionsToDisplay - 1 ? 'Finish' : 'Next'}
-            </Text>
-          </Pressable>
-        </ScrollView>
-      )}
+            </ScrollView>
+          )}
     </View>
   );
 }
@@ -202,6 +220,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Center the content vertically
 
   },
+    noWifiContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: "center",
+        marginTop: 20
+    },
+    noWifiText: {
+        fontSize: 20,
+        color: 'green',
+        marginTop: 20,
+    },
   overlayCircle: {
     width: 100,
     height: 40,

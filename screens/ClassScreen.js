@@ -3,10 +3,10 @@ import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
 import solvedBooks from '../assets/solved_paper.json';
 
 const bookType = [
-    { typeName: 'مختصر سوالات', id: 1 },
-    { typeName: 'تفصیلی سوالات', id: 2 },
-    { typeName: ' کثیر الانتخابی سوالات', id: 3 },
-    { typeName: 'Guess Paper', id: 4 },
+    { typeName: 'حل شدہ مختصر سوالات', id: 1 },
+    { typeName: 'حل شدہ تفصیلی سوالات', id: 2 },
+    { typeName: 'سوالیہ انشائیہ', id: 3 },
+    { typeName: 'سوالیہ معروضی', id: 4 },
 ];
 
 const CustomItem = ({ title, navigation, links, bookId }) => {
@@ -17,19 +17,27 @@ const CustomItem = ({ title, navigation, links, bookId }) => {
         case 2:
           return links.detail;
         case 3:
-          return links.mcq;
+          return links.q_paper;
         case 4:
-          return links.guess_paper;
+          return links.mcq;
         default:
           return '';
       }
     };
   
+    const extractFileName = (url) => {
+      const fileId = url.split('id=')[1]; // Extract the file ID from the URL
+      const fileName = fileId ? `file_${fileId}.pdf` : ''; // Generate a file name using the file ID (you can modify this as needed)
+    
+      return fileName;
+    };
+    
     return (
       <Pressable onPress={() => {
         const link = getLinkForType(bookId);
-        console.log(link, 'miiiink')
-        navigation.navigate("PDF", { title, link });
+        console.log(extractFileName(link), 'miiiink')
+
+        navigation.navigate("PDF", { title, link, fileName: extractFileName(link) });
       }} style={styles.customItem}>
         <Text style={styles.titleText}>{title}</Text>
       </Pressable>

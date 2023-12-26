@@ -28,6 +28,7 @@ const REWARDED_AD_INTERVAL = 8 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 export default function PDFViewScreen({ route, navigation }) {
     const [isConnected, setIsConnected] = useState(true);
+    const [reachabilityStatus, setReachabilityStatus] = useState(true);
     const [pdfPath, setPdfPath] = useState(null);
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
@@ -46,7 +47,7 @@ export default function PDFViewScreen({ route, navigation }) {
                 const updatedViews = currentViews + 1;
                 setScreenViews(updatedViews);
                 await AsyncStorage.setItem('screenViews', updatedViews.toString());
-                if (updatedViews === 10) {
+                if (updatedViews === 5) {
                     handleScreenViewCount10();
                 }
             } catch (error) {
@@ -59,9 +60,15 @@ export default function PDFViewScreen({ route, navigation }) {
         console.log('1sr useEffect')
         navigation.setOptions({ title: title });
         const checkNetworkStatus = async () => {
-            const state = await NetInfo.fetch();
-            setIsConnected(state.isConnected);
+            const response = await NetInfo.fetch();
+            console.log(response)
+            if (response.isConnected) {
+                setIsConnected(true);
+            } else {
+                setIsConnected(false);
+            }
         };
+
         checkNetworkStatus();
 
         if (isConnected) {
@@ -135,14 +142,12 @@ export default function PDFViewScreen({ route, navigation }) {
         }
 
     }, []);
+
     const handleScreenViewCount10 = async () => {
         console.log('Screen view count reached 10!');
-            interstitial.show();
-        // Add your logic or function call here
+        interstitial.show();
         setScreenViews(0);
         await AsyncStorage.setItem('screenViews', '0');
-        
-
     };
 
     async function showInterstitialAd() {
@@ -158,7 +163,6 @@ export default function PDFViewScreen({ route, navigation }) {
         const lastRewardedAdTime = await AsyncStorage.getItem('lastRewardedAdTime');
         const currentTime = new Date().getTime();
 
-        // Check if it's been 24 hours or if it's the first time
         if (!lastRewardedAdTime || currentTime - parseInt(lastRewardedAdTime) >= REWARDED_AD_INTERVAL) {
             // Show the rewarded ad
             if (loaded) {
