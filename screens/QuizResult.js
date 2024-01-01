@@ -19,9 +19,10 @@ const calculateGrade = (percentage) => {
   }
 };
 
-export default function QuizResult({ score, totalQuestions, onRestart }) {
+export default function QuizResult({ score, totalQuestions, onRestart, correctAnswers }) {
   const percentage = calculatePercentage(score, totalQuestions);
   const grade = calculateGrade(percentage);
+  console.log(correctAnswers, 'correct');
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -46,9 +47,21 @@ export default function QuizResult({ score, totalQuestions, onRestart }) {
         </View>
       </View>
       <TouchableOpacity style={styles.restartButton} onPress={onRestart}>
-      <AntDesign style={{marginBottom: -20}} name="playcircleo" size={35} color='#fff' />
+        <AntDesign style={{ marginBottom: -20 }} name="playcircleo" size={35} color='#fff' />
         <Text style={styles.restartButtonText}>دوبارہ</Text>
       </TouchableOpacity>
+      {
+        correctAnswers ?
+          <View style={styles.correctAnswersContainer}>
+            <Text style={styles.correctAnswersTitle}>Correct Answers:</Text>
+            {correctAnswers.map((answer, index) => (
+              <View key={index} style={styles.answerItem}>
+                <Text style={styles.questionNumber}>Q {index + 1}:</Text>
+                <Text style={styles.answerText}>{answer}</Text>
+              </View>
+            ))}
+          </View> : null
+      }
     </ScrollView>
   );
 }
@@ -58,6 +71,33 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     backgroundColor: '#eee',
+  },
+  correctAnswersContainer: {
+    marginTop: 20,
+    backgroundColor: '#f5f5f5',
+    padding: 15,
+    borderRadius: 10,
+  },
+  correctAnswersTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: "black",
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  answerItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  questionNumber: {
+    marginRight: 5,
+    fontWeight: 'bold',
+    color: "black",
+  },
+  answerText: {
+    flex: 1,
+    color: "black",
   },
   resultBox: {
     flexDirection: 'row',

@@ -3,14 +3,20 @@ import { View, Text, StyleSheet, Pressable, ScrollView, Alert } from 'react-nati
 import QuizResult from './QuizResult';
 import CustomHeader from '../navigation/CustomHeader';
 import { useQuiz } from '../QuizContext'; // Import the useQuiz hook
-import { RewardedAd, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
+import { RewardedAd, InterstitialAd, AdEventType, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
 import NetInfo from '@react-native-community/netinfo';
 import Feather from 'react-native-vector-icons/Feather';
 
 const adUnitId = true ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+const adUnitIdInterstitial = true ? TestIds.INTERSTITIAL : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
 const rewarded = RewardedAd.createForAdRequest(adUnitId, {
-  requestNonPersonalizedAdsOnly: true
+  requestNonPersonalizedAdsOnly: true,
+  keywords: ['clothing', 'fashion']
+});
+
+const interstitial = InterstitialAd.createForAdRequest(adUnitIdInterstitial, {
+  keywords: ['fashion', 'clothing'],
 });
 
 const quizData = {
@@ -25,13 +31,17 @@ export default function QuizScreen({ route, navigation }) {
   const { link, title } = route.params
   const { completeQuiz, state, resetQuiz } = useQuiz();
   const [loaded, setLoaded] = useState(false);
+  const [institialLoaded, setInstitialLoaded] = useState(false);
+
   // console.log(link, state, 'quiz link')
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
   const [isConnected, setIsConnected] = useState(true);
-
+  const [showRewardedAdDialog, setShowRewardedAdDialog] = useState(false);
+  const [correctAnswers, setcorrectAnswers] = useState([]);
   const [questions, setQuestions] = useState([]);
+  const [showAnswer, setShowAnswer] = useState(true);
   const totalQuestionsToDisplay = 20;
   const [quizCompleted, setQuizCompleted] = useState(false);
 
@@ -49,6 +59,10 @@ export default function QuizScreen({ route, navigation }) {
         console.log('User earned reward of ', reward);
       },
     );
+    const unsubscribeInstitial = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+      setInstitialLoaded(true);
+    });
+    interstitial.load();
     rewarded.load();
     return () => {
       unsubscribe();
@@ -75,7 +89,7 @@ export default function QuizScreen({ route, navigation }) {
     const shuffledQuestions = shuffleArray(originalQuestions);
     const selectedQuestions = shuffledQuestions.slice(0, totalQuestionsToDisplay);
     setQuestions(selectedQuestions);
-
+    setcorrectAnswers(questions)
   }, [quizCompleted]);
 
   const shuffleArray = (array) => {
@@ -91,29 +105,57 @@ export default function QuizScreen({ route, navigation }) {
   };
 
   const handleNextQuestion = () => {
+    console.log(showRewardedAdDialog, 'show reward');
     if (selectedOption !== null) {
       const isCorrect = quizData[link][currentQuestion].ansIndex === selectedOption;
 
       setScore((prevScore) => isCorrect ? prevScore + 1 : prevScore);
-
+      console.log(correctAnswers,questions, 'cooo');
       setSelectedOption(null);
-
       if (currentQuestion === totalQuestionsToDisplay - 1) {
         const quizCompletionThreshold = 0.8;
         const userScore = score; // Update the user's score based on the current question
         if (userScore / totalQuestionsToDisplay >= quizCompletionThreshold) {
           completeQuiz(`quiz${link}`, userScore);
         }
-        rewarded.show()
-        setQuizCompleted(true);
-        navigation.setOptions({
-          header: () => <CustomHeader title={"Result"} />,
-        });
+        // console.log(loaded, 'loaded')
+        
+        if (!showRewardedAdDialog) {
+          console.log(showRewardedAdDialog, 'shoee');
+          setShowRewardedAdDialog(true);
+        } else {
+          console.log(showRewardedAdDialog, 'shoee');
+          setQuizCompleted(true);
+          navigation.setOptions({
+            header: () => <CustomHeader title={"Result"} />,
+          });
+        }
+
       } else {
         setCurrentQuestion(currentQuestion + 1);
       }
     } else {
       Alert.alert('Please select an option!')
+    }
+  };
+  const handleRewardedAdDecision = (decision) => {
+    setShowRewardedAdDialog(false);
+    if (decision === 'yes') {
+      setShowAnswer(true)
+      if (loaded) {
+        rewarded.show()
+      } else {
+        setQuizCompleted(true);
+          navigation.setOptions({
+            header: () => <CustomHeader title={"Result"} />,
+          });
+      }
+    } else {
+      setShowAnswer(false)
+      setQuizCompleted(true);
+          navigation.setOptions({
+            header: () => <CustomHeader title={"Result"} />,
+          });
     }
   };
 
@@ -137,6 +179,9 @@ export default function QuizScreen({ route, navigation }) {
       </View>
     );
   }
+  if (institialLoaded) {
+    interstitial.show()
+  }
   return (
     <View>
       {
@@ -147,11 +192,12 @@ export default function QuizScreen({ route, navigation }) {
           </View>
         ) :
           quizCompleted ? ( // Conditionally render the QuizResult component
-            <QuizResult
-              score={score}
-              totalQuestions={totalQuestionsToDisplay}
-              onRestart={handleQuizRestart}
-            />
+          <QuizResult
+          score={score}
+          totalQuestions={totalQuestionsToDisplay}
+          onRestart={handleQuizRestart}
+          correctAnswers={showAnswer ? correctAnswers.map(question => question.options[question.ansIndex]) : null}
+        />        
           ) : (
             <ScrollView contentContainerStyle={styles.container}>
               <View style={styles.questionBox}>
@@ -192,7 +238,30 @@ export default function QuizScreen({ route, navigation }) {
                 </Text>
               </Pressable>
             </ScrollView>
-          )}
+          )
+      }
+      {
+        showRewardedAdDialog && (
+          <View style={styles.dialogContainer}>
+            <Text style={styles.dialogText}>تمام جوابات دیکھنے کے لیے ایک مختصر اشتہار دیکھیں۔</Text>
+            <View style={styles.buttonsContainer}>
+              <Pressable
+                style={styles.button}
+                onPress={() => handleRewardedAdDecision('yes')}
+              >
+                <Text style={styles.buttonText}>Yes</Text>
+              </Pressable>
+              <Pressable
+                style={styles.button}
+                onPress={() => handleRewardedAdDecision('no')}
+              >
+                <Text style={styles.buttonText}>No</Text>
+              </Pressable>
+            </View>
+          </View>
+        )
+
+      }
     </View>
   );
 }
@@ -204,6 +273,41 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#eee',
+  },
+  dialogContainer: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    elevation: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: '40%',
+    left: '10%',
+    right: '10%',
+    zIndex: 999,
+  },
+  dialogText: {
+    fontSize: 18,
+    marginBottom: 20,
+    textAlign: 'center',
+    color: "black"
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+  },
+  button: {
+    backgroundColor: '#3498db',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    elevation: 3,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   questionBox: {
     width: '90%',
@@ -220,17 +324,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Center the content vertically
 
   },
-    noWifiContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: "center",
-        marginTop: 20
-    },
-    noWifiText: {
-        fontSize: 20,
-        color: 'green',
-        marginTop: 20,
-    },
+  noWifiContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: "center",
+    marginTop: 20
+  },
+  noWifiText: {
+    fontSize: 20,
+    color: 'green',
+    marginTop: 20,
+  },
   overlayCircle: {
     width: 100,
     height: 40,

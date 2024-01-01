@@ -20,31 +20,87 @@ const CertificateScreen = ({ route }) => {
     const { navigate } = useNavigation()
     console.log(completedQuizzes, state, 'quizzz')
 
-    const visibleFunction = () => {
-        console.log(completedQuizzes < totalQuizzes)
-        if (completedQuizzes < totalQuizzes) {
+    // const visibleFunction = () => {
+    //     console.log(completedQuizzes < totalQuizzes)
+    //     if (completedQuizzes < totalQuizzes) {
+    //         Alert.alert('Incomplete Quizzes', 'You must complete all quizzes to apply for your certificate.');
+    //         return;
+    //     } else {
+    //         setIsFormVisible(true)
+    //     }
+    // }
+    const handleDownload = async () => {
+        // completedQuizzes < totalQuizzes
+        if (false) {
             Alert.alert('Incomplete Quizzes', 'You must complete all quizzes to apply for your certificate.');
             return;
-        } else {
-            setIsFormVisible(true)
         }
-    }
+        if (!name || name.trim() === '') {
+            Alert.alert('Name Not Set', 'Please set your name before downloading the certificate.');
+            return;
+        }
 
-    const handleDownload = async (formData) => {
-        console.log(state)
-        saveApplication(formData)
-            .then(() => {
-                console.log('Application form data saved successfully');
-                resetQuiz('applied', true); // Reset the applied state in context
-                setIsFormVisible(false);
-                Alert.alert('Success', 'Application submitted successfully');
-            })
-            .catch((error) => {
-                Alert.alert('Error: form not submitted try again', error.message);
-                setIsFormVisible(false);
-                resetQuiz('applied', false);
-            });
-};
+        try {
+            if (Platform.OS === 'android') {
+                const granted = await PermissionsAndroid.request(
+                    PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                    {
+                        title: 'Storage Permission Required',
+                        message: 'This app needs access to your device storage to download the certificate.',
+                    }
+                );
+                if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+                    console.error('Storage permission denied.');
+                    return;
+                }
+            }
+            const uri = await captureRef.current.capture();
+            const imagePath = `${RNFS.DownloadDirectoryPath}/certificate${((Math.random() * 1000) | 0)}.jpg`;
+            await RNFS.copyFile(uri, imagePath);
+
+            Alert.alert(
+                'Certificate downloaded and saved successfully.',
+                imagePath,
+                [
+                    {
+                        text: 'OK',
+                        style: 'default',
+                    },
+                ],
+                { cancelable: false }
+            );
+            console.log('Certificate downloaded and saved successfully.', imagePath);
+        } catch (error) {
+            Alert.alert(
+                'Error downloading certificate.',
+                error,
+                [
+                    {
+                        text: 'OK',
+                        style: 'default',
+                    },
+                ],
+                { cancelable: false }
+            );
+            console.error('Error downloading certificate:', error);
+        }
+    };
+
+//     const handleDownload = async (formData) => {
+//         console.log(state)
+//         saveApplication(formData)
+//             .then(() => {
+//                 console.log('Application form data saved successfully');
+//                 resetQuiz('applied', true); // Reset the applied state in context
+//                 setIsFormVisible(false);
+//                 Alert.alert('Success', 'Application submitted successfully');
+//             })
+//             .catch((error) => {
+//                 Alert.alert('Error: form not submitted try again', error.message);
+//                 setIsFormVisible(false);
+//                 resetQuiz('applied', false);
+//             });
+// };
 
 return (
     <View style={styles.container}>
@@ -55,21 +111,22 @@ return (
                     placeholder="اردو میں اپنا نام لکھیں"
                     placeholderTextColor={"black"}
                     onChangeText={(text) => setName(text)}
-                    editable={!isNameSet} // Disable input field if name is already set
+                    value={name}
+                    // editable={!isNameSet} // Disable input field if name is already set
                 />
             </View>
             <ViewShot ref={captureRef} options={{ format: 'jpg', quality: 0.9 }}>
                 <Image source={certificateImage} style={styles.image} />
                 <Text style={styles.overlayText}> {name}  </Text>
             </ViewShot>
-            <TouchableOpacity onPress={visibleFunction} disabled={state.applied} style={[styles.downloadButton, { backgroundColor: state.applied ? "gray" : "green" }]}>
-                <Text style={styles.buttonText}>{state.applied ? "Applied" : "Apply for your Certificate"}</Text>
+            <TouchableOpacity onPress={handleDownload} style={[styles.downloadButton, { backgroundColor: state.applied ? "gray" : "green" }]}>
+                <Text style={styles.buttonText}>Download Certificate</Text>
             </TouchableOpacity>
-            <ApplicationForm
+            {/* <ApplicationForm
                 isVisible={isFormVisible}
                 onClose={() => setIsFormVisible(false)}
                 onSubmit={handleDownload}
-            />
+            /> */}
         </View>
     </View>
 
@@ -89,7 +146,7 @@ const styles = StyleSheet.create({
     },
     overlayText: {
         position: 'absolute',
-        top: '55%',
+        top: '60%',
         left: '19%',
         transform: [{ translateX: -50 }, { translateY: -50 }],
         fontSize: 24,
