@@ -1,11 +1,17 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from 'react-native-google-mobile-ads';
+
+const adUnitId = true ? TestIds.BANNER : 'ca-app-pub-3940256099942544/6300978111';
 
 // Calculate the percentage and grade based on the score
 const calculatePercentage = (score, totalQuestions) => {
-  return ((score / totalQuestions) * 100);
+  const percentage = (score / totalQuestions) * 100;
+  const roundedPercentage = Math.round(percentage);
+  return roundedPercentage;
 };
+
 
 const calculateGrade = (percentage) => {
   if (percentage === 100) {
@@ -23,46 +29,78 @@ export default function QuizResult({ score, totalQuestions, onRestart, correctAn
   const percentage = calculatePercentage(score, totalQuestions);
   const grade = calculateGrade(percentage);
   console.log(correctAnswers, 'correct');
+  const correctData = correctAnswers.filter(item => {
+    return item.ansIndex >= 0 && item.ansIndex < item.options.length;
+  });
+
+  // Take the first 5 correct answers
+  const firstFiveCorrectAnswers = correctData.slice(0, 5);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.resultBox}>
-        <View style={styles.circleContainer}>
-          <View style={styles.circle}>
-            <Text style={styles.circleText}>{score}</Text>
-          </View>
-          <Text style={styles.circleLabel}>درست جواب</Text>
-        </View>
-        <View style={styles.circleContainer}>
-          <View style={styles.circle}>
-            <Text style={styles.circleText}>{percentage}%</Text>
-          </View>
-          <Text style={styles.circleLabel}>اوسط فیصد</Text>
-        </View>
-        <View style={styles.circleContainer}>
-          <View style={styles.circle}>
-            <Text style={styles.circleText}>{grade}</Text>
-          </View>
-          <Text style={styles.circleLabel}>گریڈ</Text>
-        </View>
+    <View style={{marginBottom: 80}}>
+      <View style={{ backgroundColor: '#eee', height: 'auto', borderWidth: 1, borderColor: 'green', marginTop: 2 }}>
+        <BannerAd
+          unitId={adUnitId}
+          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+          // style={{border: '1px solid black'}}
+          requestOptions={{
+            // requestNonPersonalizedAdsOnly: true,
+          }}
+          onAdFailedToLoad={e => {
+            // console.log('onAdFailedToLoad');
+            // console.log(bannerLoaded, 'banner');
+            console.log(e);
+          }}
+          onAdLoaded={e => {
+            // console.log('onAdLoaded');
+            console.log(e);
+          }}
+
+        />
       </View>
-      <TouchableOpacity style={styles.restartButton} onPress={onRestart}>
-        <AntDesign style={{ marginBottom: -20 }} name="playcircleo" size={35} color='#fff' />
-        <Text style={styles.restartButtonText}>دوبارہ</Text>
-      </TouchableOpacity>
-      {
-        correctAnswers ?
-          <View style={styles.correctAnswersContainer}>
-            <Text style={styles.correctAnswersTitle}>Correct Answers:</Text>
-            {correctAnswers.map((answer, index) => (
-              <View key={index} style={styles.answerItem}>
-                <Text style={styles.questionNumber}>Q {index + 1}:</Text>
-                <Text style={styles.answerText}>{answer}</Text>
-              </View>
-            ))}
-          </View> : null
-      }
-    </ScrollView>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.resultBox}>
+          <View style={styles.circleContainer}>
+            <View style={styles.circle}>
+              <Text style={styles.circleText}>{score}</Text>
+            </View>
+            <Text style={styles.circleLabel}>درست جواب</Text>
+          </View>
+          <View style={styles.circleContainer}>
+            <View style={styles.circle}>
+              <Text style={styles.circleText}>{percentage}%</Text>
+            </View>
+            <Text style={styles.circleLabel}>اوسط فیصد</Text>
+          </View>
+          <View style={styles.circleContainer}>
+            <View style={styles.circle}>
+              <Text style={styles.circleText}>{grade}</Text>
+            </View>
+            <Text style={styles.circleLabel}>گریڈ</Text>
+          </View>
+        </View>
+        <TouchableOpacity style={styles.restartButton} onPress={onRestart}>
+          <AntDesign style={{ marginBottom: -20 }} name="playcircleo" size={35} color='#fff' />
+          <Text style={styles.restartButtonText}>دوبارہ</Text>
+        </TouchableOpacity>
+        {
+          correctAnswers ?
+            <View style={styles.correctAnswersContainer}>
+              <Text style={styles.correctAnswersTitle}>Correct Answers</Text>
+              {firstFiveCorrectAnswers.map((item, index) => (
+                <View key={index} style={styles.answerContainer}>
+                  <Text style={styles.questionText}>
+                    {`سوال : ${item.question}`}
+                  </Text>
+                  <Text style={styles.answerText}>
+                    {`جواب : ${item.options[item.ansIndex]}`}
+                  </Text>
+                </View>
+              ))}
+            </View> : null
+        }
+      </ScrollView>
+    </View>
   );
 }
 
@@ -73,31 +111,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
   },
   correctAnswersContainer: {
-    marginTop: 20,
+    marginVertical: 20,
     backgroundColor: '#f5f5f5',
     padding: 15,
     borderRadius: 10,
   },
   correctAnswersTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: "black",
-    marginBottom: 10,
-    textAlign: 'center',
+    color: "green",
+    fontSize: 20,
+    textAlign: "center",
+    marginVertical: 10,
+    fontWeight: "bold"
   },
-  answerItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  answerContainer: {
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 10,
+    borderRadius: 5,
+  },
+  questionText: {
+    fontSize: 16,
+    fontWeight: 'bold',
     marginBottom: 5,
-  },
-  questionNumber: {
-    marginRight: 5,
-    fontWeight: 'bold',
     color: "black",
   },
   answerText: {
-    flex: 1,
-    color: "black",
+    fontSize: 16,
+    color: "black"
   },
   resultBox: {
     flexDirection: 'row',

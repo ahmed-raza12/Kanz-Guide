@@ -3,9 +3,10 @@ import { View, Text, StyleSheet, Pressable, ScrollView, Alert } from 'react-nati
 import QuizResult from './QuizResult';
 import CustomHeader from '../navigation/CustomHeader';
 import { useQuiz } from '../QuizContext'; // Import the useQuiz hook
-import { RewardedAd, InterstitialAd, AdEventType, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
+import { RewardedAd, InterstitialAd,  AdEventType, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
 import NetInfo from '@react-native-community/netinfo';
 import Feather from 'react-native-vector-icons/Feather';
+
 
 const adUnitId = true ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 const adUnitIdInterstitial = true ? TestIds.INTERSTITIAL : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
@@ -42,7 +43,7 @@ export default function QuizScreen({ route, navigation }) {
   const [correctAnswers, setcorrectAnswers] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [showAnswer, setShowAnswer] = useState(true);
-  const totalQuestionsToDisplay = 20;
+  const totalQuestionsToDisplay = 7;
   const [quizCompleted, setQuizCompleted] = useState(false);
 
   useEffect(() => {
@@ -180,7 +181,7 @@ export default function QuizScreen({ route, navigation }) {
     );
   }
   if (institialLoaded) {
-    interstitial.show()
+    // interstitial.show()
   }
   return (
     <View>
@@ -196,7 +197,7 @@ export default function QuizScreen({ route, navigation }) {
           score={score}
           totalQuestions={totalQuestionsToDisplay}
           onRestart={handleQuizRestart}
-          correctAnswers={showAnswer ? correctAnswers.map(question => question.options[question.ansIndex]) : null}
+          correctAnswers={showAnswer ? correctAnswers : []}
         />        
           ) : (
             <ScrollView contentContainerStyle={styles.container}>
@@ -243,7 +244,7 @@ export default function QuizScreen({ route, navigation }) {
       {
         showRewardedAdDialog && (
           <View style={styles.dialogContainer}>
-            <Text style={styles.dialogText}>تمام جوابات دیکھنے کے لیے ایک مختصر اشتہار دیکھیں۔</Text>
+            <Text style={styles.dialogText}>پہلے 5 سوالات کے جوابات دیکھنے کے لیے ایک مختصر اشتہار دیکھیں۔</Text>
             <View style={styles.buttonsContainer}>
               <Pressable
                 style={styles.button}

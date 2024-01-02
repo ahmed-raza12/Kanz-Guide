@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
         paddingHorizontal: 20,
-        paddingVertical: 40
+        paddingVertical: 40,
+        backgroundColor: "white"
     },
     emojiContainer: {
         flexDirection: 'row-reverse',

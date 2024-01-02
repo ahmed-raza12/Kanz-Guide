@@ -292,7 +292,7 @@ export default function PDFViewScreen({ route, navigation }) {
 
             }
             {pdfPath ?
-                <View style={{ backgroundColor: '#eee', height: 'auto' }}>
+                <View style={{ backgroundColor: '#eee', height: 'auto', borderTopWidth: 1, borderColor: 'green', marginTop: 2 }}>
                     <BannerAd
                         unitId={adUnitId}
                         size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
@@ -328,7 +328,7 @@ const styles = StyleSheet.create({
     pdfContainer: {
         flex: 1,
         width: '100%',
-        borderWidth: 1,
+        borderBottomWidth: 1,
         borderColor: "green",
     },
     pdfView: {
