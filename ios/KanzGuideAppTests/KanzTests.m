@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface KanzTests : XCTestCase
+@interface KanzGuideAppTests : XCTestCase
 
 @end
 
-@implementation KanzTests
+@implementation KanzGuideAppTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

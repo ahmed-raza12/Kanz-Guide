@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:609449581695:android:d513a6cf3d133a9410b34a",
+        "mobilesdk_app_id": "1:609449581695:android:dd5c3b3afbab7c6510b34a",
         "android_client_info": {
-          "package_name": "com.kanz"
+          "package_name": "com.ardeveloper.kanzguide"
         }
       },
       "oauth_client": [],

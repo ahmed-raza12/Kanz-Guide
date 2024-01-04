@@ -1,4 +1,4 @@
-package com.kanz;
+package com.ardeveloper.kanzguide;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

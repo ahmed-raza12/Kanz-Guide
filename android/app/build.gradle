@@ -74,9 +74,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.kanz"
+    namespace "com.ardeveloper.kanzguide"
     defaultConfig {
-        applicationId "com.kanz"
+        applicationId "com.ardeveloper.kanzguide"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
