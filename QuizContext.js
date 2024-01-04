@@ -29,6 +29,8 @@ const quizReducer = (state, action) => {
 // Step 3: Create a context provider
 export const QuizProvider = ({ children }) => {
   const [state, dispatch] = useReducer(quizReducer, initialState);
+  // const [interstitialAd, setInterstitialAd] = useState(null);
+  // const [rewardedAd, setRewardedAd] = useState(null);
 
   useEffect(() => {
     // Load state from AsyncStorage when the component mounts
@@ -44,7 +46,6 @@ export const QuizProvider = ({ children }) => {
       }
     };
     
-
     loadQuizState();
   }, []); // Run this effect only once
 

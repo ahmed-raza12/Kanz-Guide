@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Pressable, ScrollView, Alert } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Alert, ActivityIndicator } from 'react-native';
 import QuizResult from './QuizResult';
 import CustomHeader from '../navigation/CustomHeader';
 import { useQuiz } from '../QuizContext'; // Import the useQuiz hook
-import { RewardedAd, InterstitialAd,  AdEventType, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
+import { RewardedAd, InterstitialAd, AdEventType, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
 import NetInfo from '@react-native-community/netinfo';
 import Feather from 'react-native-vector-icons/Feather';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const adUnitId = true ? TestIds.REWARDED : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
@@ -32,7 +33,7 @@ export default function QuizScreen({ route, navigation }) {
   const { link, title } = route.params
   const { completeQuiz, state, resetQuiz } = useQuiz();
   const [loaded, setLoaded] = useState(false);
-  const [institialLoaded, setInstitialLoaded] = useState(false);
+  const [institialLoaded, setInstitialLoaded] = useState(null);
 
   // console.log(link, state, 'quiz link')
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -43,7 +44,7 @@ export default function QuizScreen({ route, navigation }) {
   const [correctAnswers, setcorrectAnswers] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [showAnswer, setShowAnswer] = useState(true);
-  const totalQuestionsToDisplay = 7;
+  const totalQuestionsToDisplay = 20;
   const [quizCompleted, setQuizCompleted] = useState(false);
 
   useEffect(() => {
@@ -63,15 +64,59 @@ export default function QuizScreen({ route, navigation }) {
     const unsubscribeInstitial = interstitial.addAdEventListener(AdEventType.LOADED, () => {
       setInstitialLoaded(true);
     });
+    const unsubscribeError = interstitial.addAdEventListener(AdEventType.ERROR, () => {
+      setInstitialLoaded(false);
+      console.log(AdEventType.ERROR, 'adevent')
+    });
+    const unsubscribeClosed = interstitial.addAdEventListener(AdEventType.CLOSED, () => {
+      setInstitialLoaded(false);
+      console.log(AdEventType.CLOSED, 'adevent')
+    });
+    const unsubscribeClicked = interstitial.addAdEventListener(AdEventType.CLICKED, () => {
+      setInstitialLoaded(false);
+      console.log(AdEventType.CLICKED, 'adevent')
+    });
+    const trackScreenViews = async () => {
+      try {
+        const storedViews = await AsyncStorage.getItem('screenViewsQuiz');
+        const currentViews = storedViews ? parseInt(storedViews) : 0;
+        const updatedViews = currentViews + 1;
+        await AsyncStorage.setItem('screenViewsQuiz', updatedViews.toString());
+        console.log(updatedViews, 'screen views');
+
+        if (updatedViews === 3) {
+          await AsyncStorage.setItem('screenViewsQuiz', '0');
+          handleScreenViewCount();
+        }
+
+      } catch (error) {
+        console.error('Error tracking screen views:', error);
+      }
+    };
+    if (isConnected) {
+      trackScreenViews();
+    }
     interstitial.load();
     rewarded.load();
     return () => {
       unsubscribe();
+      unsubscribeInstitial();
+      unsubscribeClicked();
+      unsubscribeClosed();
+      unsubscribeError();
       unsubscribeLoaded();
       unsubscribeEarned();
     };
   }, []);
 
+
+  const handleScreenViewCount = async () => {
+    console.log('Screen view count reached 3!', institialLoaded);
+    if (institialLoaded) {
+      interstitial.show();
+    }
+    await AsyncStorage.setItem('screenViews', '0');
+  };
   useEffect(() => {
     if (!quizCompleted) {
       navigation.setOptions({
@@ -111,7 +156,7 @@ export default function QuizScreen({ route, navigation }) {
       const isCorrect = quizData[link][currentQuestion].ansIndex === selectedOption;
 
       setScore((prevScore) => isCorrect ? prevScore + 1 : prevScore);
-      console.log(correctAnswers,questions, 'cooo');
+      console.log(correctAnswers, questions, 'cooo');
       setSelectedOption(null);
       if (currentQuestion === totalQuestionsToDisplay - 1) {
         const quizCompletionThreshold = 0.8;
@@ -120,7 +165,7 @@ export default function QuizScreen({ route, navigation }) {
           completeQuiz(`quiz${link}`, userScore);
         }
         // console.log(loaded, 'loaded')
-        
+
         if (!showRewardedAdDialog) {
           console.log(showRewardedAdDialog, 'shoee');
           setShowRewardedAdDialog(true);
@@ -142,21 +187,23 @@ export default function QuizScreen({ route, navigation }) {
   const handleRewardedAdDecision = (decision) => {
     setShowRewardedAdDialog(false);
     if (decision === 'yes') {
-      setShowAnswer(true)
+      console.log(loaded, 'load');
       if (loaded) {
         rewarded.show()
+        setShowAnswer(true)
+        setQuizCompleted(true);
       } else {
         setQuizCompleted(true);
-          navigation.setOptions({
-            header: () => <CustomHeader title={"Result"} />,
-          });
+        navigation.setOptions({
+          header: () => <CustomHeader title={"Result"} />,
+        });
       }
     } else {
       setShowAnswer(false)
       setQuizCompleted(true);
-          navigation.setOptions({
-            header: () => <CustomHeader title={"Result"} />,
-          });
+      navigation.setOptions({
+        header: () => <CustomHeader title={"Result"} />,
+      });
     }
   };
 
@@ -165,6 +212,7 @@ export default function QuizScreen({ route, navigation }) {
     setCurrentQuestion(0);
     setSelectedOption(null);
     setScore(0);
+    setLoaded(false)
     setQuizCompleted(false);
     completeQuiz(`quiz${link}`, 0)
     navigation.setOptions({
@@ -180,9 +228,6 @@ export default function QuizScreen({ route, navigation }) {
       </View>
     );
   }
-  if (institialLoaded) {
-    // interstitial.show()
-  }
   return (
     <View>
       {
@@ -191,55 +236,54 @@ export default function QuizScreen({ route, navigation }) {
             <Feather name="wifi-off" size={60} color="#0a8a06" />
             <Text style={styles.noWifiText}>No Internet Connection</Text>
           </View>
-        ) :
-          quizCompleted ? ( // Conditionally render the QuizResult component
+        ) : quizCompleted ? ( // Conditionally render the QuizResult component
           <QuizResult
-          score={score}
-          totalQuestions={totalQuestionsToDisplay}
-          onRestart={handleQuizRestart}
-          correctAnswers={showAnswer ? correctAnswers : []}
-        />        
-          ) : (
-            <ScrollView contentContainerStyle={styles.container}>
-              <View style={styles.questionBox}>
-                <View style={styles.overlayCircle}>
-                  <Text style={styles.questionNumberText}>
-                    Q {currentQuestion + 1}/{questions.length}
-                  </Text>
-                </View>
-                <Text style={styles.questionText}>
-                  {questions[currentQuestion].question}
+            score={score}
+            totalQuestions={totalQuestionsToDisplay}
+            onRestart={handleQuizRestart}
+            correctAnswers={showAnswer ? correctAnswers : []}
+          />
+        ) : (
+          <ScrollView contentContainerStyle={styles.container}>
+            <View style={styles.questionBox}>
+              <View style={styles.overlayCircle}>
+                <Text style={styles.questionNumberText}>
+                  Q {currentQuestion + 1}/{questions.length}
                 </Text>
               </View>
-              <View style={styles.optionsContainer}>
-                {questions[currentQuestion].options.map((option, index) => (
-                  <Pressable
-                    key={index}
-                    style={[
-                      styles.optionButton,
-                      selectedOption === index && styles.selectedOption,
-                    ]}
-                    onPress={() => handleOptionSelect(index)}
-                  >
-                    <View style={styles.optionCircle}>
-                      <Text style={styles.optionCircleText}>
-                        {index === 0 ? 'ا' : index === 1 ? 'ب' : index === 2 ? 'ج' : 'د'}
-                      </Text>
-                    </View>
-                    <Text style={styles.optionText}> {option} </Text>
-                  </Pressable>
-                ))}
-              </View>
-              <Pressable
-                style={styles.nextButton}
-                onPress={handleNextQuestion}
-              >
-                <Text style={styles.nextButtonText}>
-                  {currentQuestion === totalQuestionsToDisplay - 1 ? 'Finish' : 'Next'}
-                </Text>
-              </Pressable>
-            </ScrollView>
-          )
+              <Text style={styles.questionText}>
+                {questions[currentQuestion].question}
+              </Text>
+            </View>
+            <View style={styles.optionsContainer}>
+              {questions[currentQuestion].options.map((option, index) => (
+                <Pressable
+                  key={index}
+                  style={[
+                    styles.optionButton,
+                    selectedOption === index && styles.selectedOption,
+                  ]}
+                  onPress={() => handleOptionSelect(index)}
+                >
+                  <View style={styles.optionCircle}>
+                    <Text style={styles.optionCircleText}>
+                      {index === 0 ? 'ا' : index === 1 ? 'ب' : index === 2 ? 'ج' : 'د'}
+                    </Text>
+                  </View>
+                  <Text style={styles.optionText}> {option} </Text>
+                </Pressable>
+              ))}
+            </View>
+            <Pressable
+              style={styles.nextButton}
+              onPress={handleNextQuestion}
+            >
+              <Text style={styles.nextButtonText}>
+                {currentQuestion === totalQuestionsToDisplay - 1 ? 'Finish' : 'Next'}
+              </Text>
+            </Pressable>
+          </ScrollView>
+        )
       }
       {
         showRewardedAdDialog && (

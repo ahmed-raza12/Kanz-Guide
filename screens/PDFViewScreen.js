@@ -38,8 +38,9 @@ export default function PDFViewScreen({ route, navigation }) {
     useEffect(() => {
         const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
             setLoaded(true);
-            console.log(AdEventType.LOADED, 'adevent')
+            console.log(AdEventType.LOADED, 'load')
         });
+
         const unsubscribeError = interstitial.addAdEventListener(AdEventType.ERROR, () => {
             setLoaded(false);
             console.log(AdEventType.ERROR, 'adevent')
@@ -240,34 +241,28 @@ export default function PDFViewScreen({ route, navigation }) {
         <View style={styles.container}>
             <View style={styles.pdfContainer}>
                 {isConnected ? (
-                    loaded === null ? (
-                        <ActivityIndicator size="large" style={{ transform: [{ scale: 2 }], marginVertical: 100 }} />
-                    ) :
-                       loaded === false && pdfPath ? (
-                            <PdfRendererView
-                                style={styles.pdfView}
-                                source={`file://${pdfPath}`}
-                                maxZoom={5}
-                                onPageChange={(current, total) => {
-                                    console.log(current, total);
-                                }}
-                            />
+                    pdfPath ? (
+                        <PdfRendererView
+                            style={styles.pdfView}
+                            source={`file://${pdfPath}`}
+                            maxZoom={5}
+                            onPageChange={(current, total) => {
+                                console.log(current, total);
+                            }}
+                        />
+                    ) : (
+                        error ? (
+                            <Text style={styles.noWifiText}>{error}</Text>
                         ) : (
-                            error ? (
-                                <Text style={styles.noWifiText}>{error}</Text>
-                            ) : (
-                                // Another fallback UI if PDF path is not available
-                                <ActivityIndicator size="large" style={{ transform: [{ scale: 2 }], marginVertical: 100 }} />
-                            )
+                            <ActivityIndicator size="large" style={{ transform: [{ scale: 2 }], marginVertical: 100 }} />
                         )
+                    )
                 ) : (
-                    // Show no internet connection UI
                     <View style={styles.noWifiContainer}>
                         <Feather name="wifi-off" size={60} color="#0a8a06" />
                         <Text style={styles.noWifiText}>No Internet Connection</Text>
                     </View>
                 )}
-
             </View>
             {
                 isConnected && showRewardedAdDialog && (
